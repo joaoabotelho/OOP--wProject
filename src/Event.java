@@ -39,9 +39,9 @@ class Spot{
 
 class Person{
     protected String username, password, name, profile, post, sub_post;
-    protected Spot[] chosen_spots;
+    protected ArrayList<Spot> chosen_spots;
 
-    public Person(String username, String password, String name, String profile, String post, String sub_post, Spot[] chosen_spots) {
+    public Person(String username, String password, String name, String profile, String post, String sub_post, ArrayList<Spot> chosen_spots) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -80,9 +80,9 @@ class Park extends Spot{
 }
 
 class Garden extends Park{
-    private String area;
+    private int area;
 
-    public Garden(Coordinates place, int subs, String area) {
+    public Garden(Coordinates place, int subs, int area) {
         super(place, subs, "Garden");
         this.area = area;
     }
