@@ -1,4 +1,4 @@
-# OOP-Project 17/18 - University of Coimbra -  Faculdade de Ciências e Tecnologia
+# OOP-Project 17/18 - FCT Univ. Coimbra
 ## Descrição do Problema
 Os alunos de Programação Orientada aos Objetos (POO) pretendem organizar
 um serão de convívio com a comunidade do DEI e querem desenvolver uma
