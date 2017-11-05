@@ -1,9 +1,18 @@
 import java.util.ArrayList;
+import javax.swing.*;
 
 public class Event{
     ArrayList<Spot> spots;
     ArrayList<Person> people;
     int min_revenue;
+
+    public static void main(String[] args) {
+        Login init = new Login();
+        init.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        init.setTitle("APP");
+        init.setSize(400,400);
+        init.setVisible(true);
+    }
 }
 
 class Coordinates{
@@ -53,19 +62,19 @@ class Person{
 }
 
 class Teacher extends Person{
-    public Teacher(String username, String password, String name, String profile, String sub_post, Spot[] chosen_spots) {
+    public Teacher(String username, String password, String name, String profile, String sub_post, ArrayList<Spot> chosen_spots) {
         super(username, password, name, profile, "Teacher", sub_post, chosen_spots);
     }
 }
 
 class Employee extends Person{
-    public Employee(String username, String password, String name, String profile, String sub_post, Spot[] chosen_spots) {
+    public Employee(String username, String password, String name, String profile, String sub_post, ArrayList<Spot> chosen_spots){
         super(username, password, name, profile, "Employee", sub_post, chosen_spots);
     }
 }
 
 class Student extends Person{
-    public Student(String username, String password, String name, String profile, String course, Spot[] chosen_spots) {
+    public Student(String username, String password, String name, String profile, String course, ArrayList<Spot> chosen_spots) {
         super(username, password, name, profile, "Student", course, chosen_spots);
     }
 }
