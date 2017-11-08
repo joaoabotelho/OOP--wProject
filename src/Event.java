@@ -1,10 +1,14 @@
-/**
 import java.util.ArrayList;
 
-public class Event{
-    ArrayList<Spot> spots;
-    ArrayList<Person> people;
-    int min_revenue;
+class Event{
+    public static ArrayList<Spot> spots;
+    public static ArrayList<Person> people;
+    public static int min_revenue;
+
+    public Event(ArrayList<Spot> spots, ArrayList<Person> people) {
+        this.spots = spots;
+        this.people = people;
+    }
 }
 
 class Coordinates{
@@ -37,53 +41,61 @@ class Spot{
         this.type = type;
     }
 }
-*/
-class Person{
-    protected String username, password, name, profile, post, sub_post;
-    //protected ArrayList<Spot> chosen_spots;
 
-    public Person(String username, String password, String name, String profile, String post, String sub_post/**ArrayList<Spot> chosen_spots*/) {
+class Person{
+    protected String username, password, name, profile, post, subPost;
+    protected ArrayList<Spot> chosenSpots;
+
+    public Person(String username, String password, String name, String profile, String post, String subPost, ArrayList<Spot> chosenSpots) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.profile = profile;
         this.post = post;
-        this.sub_post = sub_post;
-        //this.chosen_spots = chosen_spots;
+        this.subPost = subPost;
+        this.chosenSpots = chosenSpots;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
-/**
+
 class Teacher extends Person{
-    public Teacher(String username, String password, String name, String profile, String sub_post, Spot[] chosen_spots) {
-        super(username, password, name, profile, "Teacher", sub_post, chosen_spots);
+    public Teacher(String username, String password, String name, String profile, String subPost, ArrayList<Spot> chosenSpots) {
+        super(username, password, name, profile, "Teacher", subPost, chosenSpots);
     }
 }
 
 class Employee extends Person{
-    public Employee(String username, String password, String name, String profile, String sub_post, Spot[] chosen_spots) {
-        super(username, password, name, profile, "Employee", sub_post, chosen_spots);
+    public Employee(String username, String password, String name, String profile, String subPost, ArrayList<Spot> chosenSpots) {
+        super(username, password, name, profile, "Employee", subPost, chosenSpots);
     }
 }
 
 class Student extends Person{
-    public Student(String username, String password, String name, String profile, String course, Spot[] chosen_spots) {
-        super(username, password, name, profile, "Student", course, chosen_spots);
+    public Student(String username, String password, String name, String profile, String course, ArrayList<Spot> chosenSpots) {
+        super(username, password, name, profile, "Student", course, chosenSpots);
     }
 }
 
 class Park extends Spot{
-    protected String sub_type;
+    protected String subType;
 
-    public Park(Coordinates place, int subs, String sub_type) {
+    public Park(Coordinates place, int subs, String subType) {
         super(place, subs, "Park");
-        this.sub_type = sub_type;
+        this.subType = subType;
     }
 }
 
 class Garden extends Park{
     private int area;
 
-    public Garden(Coordinates place, int subs, int area) {
+    public Garden(Coordinates place, int subs, String type, String subType, int area) {
         super(place, subs, "Garden");
         this.area = area;
     }
@@ -94,7 +106,7 @@ class Garden extends Park{
                 "place=" + place +
                 ", subs=" + subs +
                 ", type='" + type + '\'' +
-                ", sub_type='" + sub_type + '\'' +
+                ", sub_type='" + subType + '\'' +
                 ", area='" + area + '\'' +
                 '}';
     }
@@ -114,7 +126,7 @@ class Sports_Area extends Park{
                 "place=" + place +
                 ", subs=" + subs +
                 ", type='" + type + '\'' +
-                ", sub_type='" + sub_type + '\'' +
+                ", sub_type='" + subType + '\'' +
                 ", sports=" + sports +
                 '}';
     }
@@ -132,15 +144,14 @@ class Exposition extends Spot{
 }
 
 class Bar extends Spot{
-    private int capacity, min_consump, perc_guest;
+    private int capacity, minConsump, percGuest;
     private ArrayList<Person> guest_list;
 
-
-    public Bar(Coordinates place, int subs, String type, int capacity, int min_consump, int perc_guest, ArrayList<Person> guest_list) {
+    public Bar(Coordinates place, int subs, String type, int capacity, int minConsump, int percGuest, ArrayList<Person> guest_list) {
         super(place, subs, type);
         this.capacity = capacity;
-        this.min_consump = min_consump;
-        this.perc_guest = perc_guest;
+        this.minConsump = minConsump;
+        this.percGuest = percGuest;
         this.guest_list = guest_list;
     }
 
@@ -151,11 +162,9 @@ class Bar extends Spot{
                 ", subs=" + subs +
                 ", type='" + type + '\'' +
                 ", capacity=" + capacity +
-                ", min_consump=" + min_consump +
-                ", perc_guest=" + perc_guest +
+                ", minConsump=" + minConsump +
+                ", percGuest=" + percGuest +
                 ", guest_list=" + guest_list +
                 '}';
     }
 }
-
-*/
