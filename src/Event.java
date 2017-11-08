@@ -1,3 +1,4 @@
+/**
 import java.util.ArrayList;
 
 public class Event{
@@ -36,22 +37,22 @@ class Spot{
         this.type = type;
     }
 }
-
+*/
 class Person{
     protected String username, password, name, profile, post, sub_post;
-    protected ArrayList<Spot> chosen_spots;
+    //protected ArrayList<Spot> chosen_spots;
 
-    public Person(String username, String password, String name, String profile, String post, String sub_post, ArrayList<Spot> chosen_spots) {
+    public Person(String username, String password, String name, String profile, String post, String sub_post/**ArrayList<Spot> chosen_spots*/) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.profile = profile;
         this.post = post;
         this.sub_post = sub_post;
-        this.chosen_spots = chosen_spots;
+        //this.chosen_spots = chosen_spots;
     }
 }
-
+/**
 class Teacher extends Person{
     public Teacher(String username, String password, String name, String profile, String sub_post, Spot[] chosen_spots) {
         super(username, password, name, profile, "Teacher", sub_post, chosen_spots);
@@ -157,3 +158,4 @@ class Bar extends Spot{
     }
 }
 
+*/
