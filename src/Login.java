@@ -3,66 +3,106 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Login extends JFrame{
-    private JPanel title_panel, data_panel, user_panel, pass_panel, button_panel;
-    private JLabel title, username_label, password_label;
+class Login extends Main{
+    private JFrame frame;
+    private JPanel warningP, titleP, dataP, userP, passP, buttonP;
     private JTextField username;
     private JPasswordField password;
     private JButton login, register;
 
-    public Login(){
-        this.setLayout(new GridLayout(3,1));
-        title_panel = new JPanel(new BorderLayout());
-        data_panel = new JPanel(new GridLayout(2,1));
-        button_panel = new JPanel(new FlowLayout());
-        pass_panel = new JPanel(new FlowLayout());
-        user_panel = new JPanel(new FlowLayout());
+    public Login(int state){
+        GUI_Management manage = new GUI_Management();
+        createPanels();
 
         // Title Panel
-        title = new JLabel("DEI Event");
-        title.setHorizontalAlignment(SwingConstants.CENTER);
-        title.setFont(new Font("Arial", Font.BOLD, 24));
-        title_panel.add(title, BorderLayout.CENTER);
+        manage.create_title("Login", titleP);
 
         //Data Panel
-        username_label = new JLabel("Username:");
-        password_label = new JLabel("Password:");
-        username = new JTextField();
-        password = new JPasswordField();
+        username = manage.createLabelTextFiel(userP, "Username:");
+        password = manage.create_pass(passP);
 
-        username_label.setFont(new Font("Arial", Font.PLAIN, 15));
-        password_label.setFont(new Font("Arial", Font.PLAIN, 15));
-
-        username.setPreferredSize(new Dimension(200,24));
-        password.setPreferredSize(new Dimension(200,24));
-        user_panel.add(username_label);
-        user_panel.add(username);
-        pass_panel.add(password_label);
-        pass_panel.add(password);
-        data_panel.add(user_panel);
-        data_panel.add(pass_panel);
+        manage.add_panel(dataP, userP, passP);
 
         // Button Panel
         login = new JButton("Login");
         register = new JButton("Register");
-        button_panel.add(login);
-        button_panel.add(register);
+        manage.add_panel(buttonP, login, register);
+
+        //Warning Panel
+        if(state != 0) {
+            setLoginError();
+        }
 
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String usr, pass;
+                loginButtonAction(frame);}
+        });
 
-                usr = username.getText();
-                pass = String.valueOf(password.getPassword());
-
-
-                System.out.println(usr + " lalalalla " + pass);
+        register.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registerButtonAction(frame);
             }
         });
 
-        this.add(title_panel);
-        this.add(data_panel);
-        this.add(button_panel);
+        manage.add_frame(frame, titleP, dataP, buttonP, warningP);
+        manage.defaultWindow(frame, 400, 400);
+    }
+
+    private void setLoginError(){
+        JLabel warning = new JLabel("Account not found. Please try again.");
+
+        warning.setFont(new Font("Arial", Font.BOLD, 10));
+        warning.setHorizontalAlignment(SwingConstants.CENTER);
+        warningP.add(warning);
+    }
+
+    private void registerButtonAction(JFrame frame) {
+        frame.dispose();
+        new Register();
+    }
+
+    private void createPanels(){
+        frame = new JFrame();
+        frame.setLayout(new GridLayout(4,1));
+        titleP = new JPanel(new BorderLayout());
+        dataP =  new JPanel(new GridLayout(2,1));
+        buttonP = new JPanel(new FlowLayout());
+        passP = new JPanel(new FlowLayout());
+        userP = new JPanel(new FlowLayout());
+        warningP = new JPanel(new FlowLayout());
+    }
+
+    private void loginButtonAction(JFrame frame){
+        String usr, pass;
+
+        usr = username.getText();
+        pass = String.valueOf(password.getPassword());
+
+        if(searchUser(usr, pass) == true){
+
+        } else {
+            frame.dispose();
+            new Login(1);
+        }
+    }
+
+    private boolean searchUser(String username, String password){
+        int arraysize = event.people.size();
+        String temp_username, temp_password;
+        boolean account_state = false;
+
+        // MUST DO Binary Search.
+        for(int i = 0; i < arraysize; i++){
+            temp_username = event.people.get(i).getUsername();
+            temp_password = event.people.get(i).getPassword();
+
+            if(temp_username == username && temp_password == password){
+                account_state = true;
+            }
+        }
+
+        return account_state;
     }
 }
