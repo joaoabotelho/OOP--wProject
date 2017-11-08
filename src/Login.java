@@ -5,60 +5,63 @@ import java.awt.event.ActionListener;
 
 class Login extends Main{
     private JFrame frame;
+    private JLabel warningL;
     private JPanel warningP, titleP, dataP, userP, passP, buttonP;
     private JTextField username;
     private JPasswordField password;
     private JButton login, register;
 
-    public Login(int state){
-        GUI_Management manage = new GUI_Management();
+    public Login(){
+        super();
         createPanels();
 
         // Title Panel
-        manage.create_title("Login", titleP);
+        manage.createTitle("Login", titleP);
 
         //Data Panel
-        username = manage.createLabelTextFiel(userP, "Username:");
-        password = manage.create_pass(passP);
+        username = manage.createLabelTextField(userP, "Username:");
+        password = manage.createPass(passP);
 
-        manage.add_panel(dataP, userP, passP);
+        manage.addPanel(dataP, userP, passP);
 
         // Button Panel
         login = new JButton("Login");
         register = new JButton("Register");
-        manage.add_panel(buttonP, login, register);
+        manage.addPanel(buttonP, login, register);
 
-        //Warning Panel
-        if(state != 0) {
-            setLoginError();
-        }
+        // Warning
+        warningL = new JLabel("");
+        warningP.add(warningL);
 
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginButtonAction(frame);}
+                loginButtonAction();}
         });
 
         register.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                registerButtonAction(frame);
+                registerButtonAction();
             }
         });
 
-        manage.add_frame(frame, titleP, dataP, buttonP, warningP);
-        manage.defaultWindow(frame, 400, 400);
+        manage.addFrame(frame, titleP, dataP, buttonP, warningP);
+        manage.defaultWindow(frame, 400, 250);
     }
 
     private void setLoginError(){
-        JLabel warning = new JLabel("Account not found. Please try again.");
+        warningP.remove(warningL);
+        warningL = new JLabel("Account not found. Please try again.");
 
-        warning.setFont(new Font("Arial", Font.BOLD, 10));
-        warning.setHorizontalAlignment(SwingConstants.CENTER);
-        warningP.add(warning);
+        warningL.setFont(new Font("Arial", Font.BOLD, 10));
+        warningL.setHorizontalAlignment(SwingConstants.CENTER);
+        warningP.add(warningL);
+        frame.revalidate();
+        frame.repaint();
     }
 
-    private void registerButtonAction(JFrame frame) {
+    private void registerButtonAction() {
         frame.dispose();
         new Register();
     }
@@ -68,13 +71,14 @@ class Login extends Main{
         frame.setLayout(new GridLayout(4,1));
         titleP = new JPanel(new BorderLayout());
         dataP =  new JPanel(new GridLayout(2,1));
+        userP = new JPanel(new FlowLayout());
         buttonP = new JPanel(new FlowLayout());
         passP = new JPanel(new FlowLayout());
-        userP = new JPanel(new FlowLayout());
         warningP = new JPanel(new FlowLayout());
+        //manage.createFlowLayouts(buttonP, passP, userP, warningP); DOESNT WORK
     }
 
-    private void loginButtonAction(JFrame frame){
+    private void loginButtonAction(){
         String usr, pass;
 
         usr = username.getText();
@@ -83,8 +87,7 @@ class Login extends Main{
         if(searchUser(usr, pass) == true){
 
         } else {
-            frame.dispose();
-            new Login(1);
+            setLoginError();
         }
     }
 

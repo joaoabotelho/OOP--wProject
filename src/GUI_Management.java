@@ -3,43 +3,70 @@ import java.awt.*;
 
 class GUI_Management {
 
-    public void add_panel(JPanel panel, Component... comps) {
+    public void addPanel(JPanel panel, Component... comps) {
         for (Component comp : comps) {
             panel.add(comp);
         }
     }
 
-    public void add_frame(JFrame frame, Component... comps) {
+    public void addFrame(JFrame frame, Component... comps) {
         for (Component comp : comps) {
             frame.add(comp);
         }
     }
 
-    public void create_title(String title, JPanel title_p){
-        JLabel title_l = new JLabel(title);
-        title_l.setHorizontalAlignment(SwingConstants.CENTER);
-        title_l.setFont(new Font("Arial", Font.BOLD, 24));
-        title_p.add(title_l, BorderLayout.CENTER);
+    public void createTitle(String title, JPanel titleP){
+        JLabel titleL = new JLabel(title);
+
+        titleL.setHorizontalAlignment(SwingConstants.CENTER);
+        titleL.setFont(new Font("Arial", Font.BOLD, 24));
+        titleP.add(titleL, BorderLayout.CENTER);
     }
 
-    public JTextField createLabelTextFiel(JPanel panel, String str){
-        JLabel label = new JLabel(str);
+    public JTextField createLabelTextField(JPanel panel, String str){
+        JLabel label = new JLabel(str, SwingConstants.RIGHT);
         JTextField tField= new JTextField();
+
         label.setFont(new Font("Arial", Font.PLAIN, 15));
         tField.setPreferredSize(new Dimension(200,24));
 
-        add_panel(panel, label, tField);
-
+        addPanel(panel, label, tField);
         return tField;
     }
 
-    public JPasswordField create_pass(JPanel pass){
-        JLabel pass_l = new JLabel("Password:");
+    public JComboBox createLabelComboBox(JPanel panel, String str, String[] comboStr){
+        JLabel label = new JLabel(str);
+        JComboBox comboBox = new JComboBox(comboStr);
+
+        label.setFont(new Font("Arial", Font.PLAIN, 15));
+        addPanel(panel, label, comboBox);
+
+        return comboBox;
+    }
+
+    public JComboBox createLabelComboBox(JPanel panel, JLabel label, String[] comboStr){
+        JComboBox comboBox = new JComboBox(comboStr);
+
+        label.setFont(new Font("Arial", Font.PLAIN, 15));
+        addPanel(panel, label, comboBox);
+
+        return comboBox;
+    }
+
+    public void createFlowLayouts(JPanel... panels){
+        for(JPanel panel : panels){
+            panel =  new JPanel(new FlowLayout());
+        }
+    }
+
+    public JPasswordField createPass(JPanel pass){
+        JLabel passL = new JLabel("Password:");
         JPasswordField password = new JPasswordField();
-        pass_l.setFont(new Font("Arial", Font.PLAIN, 15));
+
+        passL.setFont(new Font("Arial", Font.PLAIN, 15));
         password.setPreferredSize(new Dimension(200,24));
 
-        add_panel(pass, pass_l, password);
+        addPanel(pass, passL, password);
 
         return password;
     }
