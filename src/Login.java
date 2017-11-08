@@ -50,17 +50,6 @@ class Login extends Main{
         manage.defaultWindow(frame, 400, 250);
     }
 
-    private void setLoginError(){
-        warningP.remove(warningL);
-        warningL = new JLabel("Account not found. Please try again.");
-
-        warningL.setFont(new Font("Arial", Font.BOLD, 10));
-        warningL.setHorizontalAlignment(SwingConstants.CENTER);
-        warningP.add(warningL);
-        frame.revalidate();
-        frame.repaint();
-    }
-
     private void registerButtonAction() {
         frame.dispose();
         new Register();
@@ -87,7 +76,8 @@ class Login extends Main{
         if(searchUser(usr, pass) == true){
 
         } else {
-            setLoginError();
+            warningP.remove(warningL);
+            warningL = manage.setWarning(frame, warningL, warningP, "Account not found. Please try again.");
         }
     }
 

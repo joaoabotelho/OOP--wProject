@@ -53,6 +53,18 @@ class GUI_Management {
         return comboBox;
     }
 
+    public JLabel setWarning(JFrame frame, JLabel warningL, JPanel warningP, String str){
+        warningL = new JLabel(str);
+
+        warningL.setFont(new Font("Arial", Font.BOLD, 10));
+        warningL.setHorizontalAlignment(SwingConstants.CENTER);
+        warningP.add(warningL);
+        frame.revalidate();
+        frame.repaint();
+
+        return warningL;
+    }
+
     public void createFlowLayouts(JPanel... panels){
         for(JPanel panel : panels){
             panel =  new JPanel(new FlowLayout());
