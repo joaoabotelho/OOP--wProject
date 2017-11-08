@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import javax.swing.*;
 
 class Event{
     public static ArrayList<Spot> spots;
@@ -169,4 +168,3 @@ class Bar extends Spot{
                 '}';
     }
 }
-
