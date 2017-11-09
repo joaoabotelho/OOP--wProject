@@ -92,14 +92,14 @@ class Login extends Main{
     }
 
     private boolean searchUser(String username, String password){
-        int arraysize = event.people.size();
+        int arraysize = event.getPeople().size();
         String temp_username, temp_password;
         boolean account_state = false;
 
         // MUST DO Binary Search.
         for(int i = 0; i < arraysize; i++){
-            temp_username = event.people.get(i).getUsername();
-            temp_password = event.people.get(i).getPassword();
+            temp_username = event.getPeople().get(i).getUsername();
+            temp_password = event.getPeople().get(i).getPassword();
 
             if(temp_username == username && temp_password == password){
                 account_state = true;

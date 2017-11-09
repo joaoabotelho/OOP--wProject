@@ -1,0 +1,4 @@
+Garden;1;2;3;400;1400
+Sports_Area;3;2;1;20;Natacao;Judo;Futebol;Andebol
+Exposition;12;3;4;40;Picasso;14.3
+Bar;34;2;55;120;150;10;50
