@@ -102,7 +102,7 @@ class Event{
     }
 
     private ArrayList<String> importPeople(){
-        
+
     }
 
     private ArrayList<String> getRemainder(String[] line){

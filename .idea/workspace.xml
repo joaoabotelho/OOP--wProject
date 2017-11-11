@@ -2,26 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b851d143-bd69-4b3a-9c8d-986a23a5dd40" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/spots.txt" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OOP-Project/Person.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-Project/Main.class" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-Project/Person.class" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Person.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-project/Bar.class" afterPath="$PROJECT_DIR$/out/production/OOP-project/Bar.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-project/Coordinates.class" afterPath="$PROJECT_DIR$/out/production/OOP-project/Coordinates.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-project/Employee.class" afterPath="$PROJECT_DIR$/out/production/OOP-project/Employee.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-project/Event.class" afterPath="$PROJECT_DIR$/out/production/OOP-project/Event.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-project/Exposition.class" afterPath="$PROJECT_DIR$/out/production/OOP-project/Exposition.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-project/Garden.class" afterPath="$PROJECT_DIR$/out/production/OOP-project/Garden.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-project/Login.class" afterPath="$PROJECT_DIR$/out/production/OOP-project/Login.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-project/Park.class" afterPath="$PROJECT_DIR$/out/production/OOP-project/Park.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-project/Sports_Area.class" afterPath="$PROJECT_DIR$/out/production/OOP-project/Sports_Area.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-project/Spot.class" afterPath="$PROJECT_DIR$/out/production/OOP-project/Spot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-project/Student.class" afterPath="$PROJECT_DIR$/out/production/OOP-project/Student.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP-project/Teacher.class" afterPath="$PROJECT_DIR$/out/production/OOP-project/Teacher.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Event.java" afterPath="$PROJECT_DIR$/src/Event.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Login.java" afterPath="$PROJECT_DIR$/src/Login.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,7 +53,7 @@
           <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Login.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="478">
+                <state relative-caret-position="1335">
                   <caret line="94" column="29" lean-forward="false" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
                   <folding />
                 </state>
@@ -79,7 +63,7 @@
           <file leaf-file-name="Event.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Event.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="195">
+                <state relative-caret-position="975">
                   <caret line="69" column="36" lean-forward="false" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -102,14 +86,24 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Event.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Event.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Event.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="285">
-                  <caret line="104" column="7" lean-forward="false" selection-start-line="104" selection-start-column="7" selection-end-line="104" selection-end-column="7" />
+                <state relative-caret-position="300">
+                  <caret line="105" column="4" lean-forward="false" selection-start-line="105" selection-start-column="4" selection-end-line="105" selection-end-column="4" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Register.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/Register.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="30">
+                  <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -179,7 +173,6 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -196,8 +189,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -330,38 +324,38 @@
       <updated>1510122188784</updated>
       <workItem from="1510122190332" duration="7323000" />
       <workItem from="1510167081745" duration="153000" />
-      <workItem from="1510237301495" duration="3572000" />
+      <workItem from="1510237301495" duration="3761000" />
+      <workItem from="1510254353871" duration="96000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11048000" />
+    <option name="totallyTimeSpent" value="11333000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19098713" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19384836" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39903265" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39903265" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -383,6 +377,48 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI_Management.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1335">
+          <caret line="94" column="29" lean-forward="false" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="69" column="36" lean-forward="false" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/spots.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="24" lean-forward="false" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -477,7 +513,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
+        <state relative-caret-position="1335">
           <caret line="94" column="29" lean-forward="false" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
           <folding />
         </state>
@@ -491,21 +527,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="69" column="36" lean-forward="false" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Register.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/spots.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="24" lean-forward="false" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="104" column="7" lean-forward="false" selection-start-line="104" selection-start-column="7" selection-end-line="104" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
