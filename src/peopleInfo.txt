@@ -1,0 +1,3 @@
+Employee tmartins1 test123 tiagomartins Bohemian Full-Time
+Student joaoabotelho test321 joaobotelho Sporty LEI
+Teacher hackerclitus 123test guilhermecruz Economic Cat

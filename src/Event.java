@@ -1,18 +1,121 @@
+import java.io.*;
 import java.util.ArrayList;
 
-class Event{
-    public static ArrayList<Spot> spots;
-    public static ArrayList<Person> people;
-    public static int min_revenue;
+class Event {
+    private static ArrayList<Spot> spots;
+    private static ArrayList<Person> people;
+    private static int min_revenue;
 
-    public Event(ArrayList<Spot> spots, ArrayList<Person> people) {
-        this.spots = spots;
-        this.people = people;
+    public Event() {
+        this.spots = importSpots();
+        this.people = importPeople();
+    }
+
+    public static ArrayList<Spot> getSpots() {
+        return spots;
+    }
+
+    public static ArrayList<Person> getPeople() {
+        return people;
+    }
+
+    private ArrayList<Spot> importSpots() {
+        String fileName = "./spotsInfo.txt";
+        String line;
+        String[] sLine;
+        ArrayList<Spot> spots = new ArrayList<>();
+
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferReader = new BufferedReader(fileReader);
+            try {
+                while ((line = bufferReader.readLine()) != null) {
+                    sLine = line.split(" ");
+                    Coordinates c = new Coordinates(Integer.parseInt(sLine[1]), Integer.parseInt(sLine[2]), Integer.parseInt(sLine[3]));
+                    switch (sLine[0]) {
+                        case "Garden":
+                            Garden g = new Garden(c, Integer.parseInt(sLine[4]), Integer.parseInt(sLine[5]));
+                            spots.add(g);
+                            break;
+
+                        case "Sports_Area":
+                            ArrayList<String> sports = new ArrayList<>();
+                            for (int j = 5; j < sLine.length; j++) {
+                                sports.add(sLine[j]);
+                            }
+                            Sports_Area sa = new Sports_Area(c, Integer.parseInt(sLine[4]), sports);
+                            spots.add(sa);
+                            break;
+
+                        case "Exposition":
+                            Exposition e = new Exposition(c, Integer.parseInt(sLine[4]), sLine[5], Integer.parseInt(sLine[6]));
+                            spots.add(e);
+                            break;
+
+                        case "Bar":
+                            ArrayList<Person> guestList = new ArrayList<>();
+                            Bar b = new Bar(c, Integer.parseInt(sLine[4]), Integer.parseInt(sLine[5]), Integer.parseInt(sLine[6]), Integer.parseInt(sLine[7]), guestList);
+                            spots.add(b);
+                    }
+                }
+            }
+            catch (IOException ex) {
+                System.out.println("Unable to read " + fileName);
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("Unable to open " + fileName);
+        }
+
+        return spots;
+    }
+
+    private static ArrayList<Person> importPeople(){
+        ArrayList<Person> people = new ArrayList<>();
+        String line;
+        String[] sLine;
+        String fileName = "./peopleInfo.txt";
+
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferReader = new BufferedReader(fileReader);
+
+            try {
+                while ((line = bufferReader.readLine()) != null) {
+                    sLine = line.split(" ");
+                    ArrayList<Spot> spots = new ArrayList<>();
+
+                    switch(sLine[0]){
+                        case "Teacher":
+                            Teacher t = new Teacher(sLine[1], sLine[2], sLine[3], sLine[4], sLine[5], spots);
+                            people.add(t);
+                            break;
+
+                        case "Employee":
+                            Employee e = new Employee(sLine[1], sLine[2], sLine[3], sLine[4], sLine[5], spots);
+                            people.add(e);
+                            break;
+
+                        case "Student":
+                            Student s = new Student(sLine[1], sLine[2], sLine[3], sLine[4], sLine[5], spots);
+                            people.add(s);
+                    }
+                }
+            }
+            catch(IOException ex){
+                System.out.println("Unable to read " + fileName);
+            }
+
+        }
+        catch(FileNotFoundException ex){
+            System.out.println("Unable to open " + fileName);
+        }
+
+        return people;
     }
 }
 
 class Coordinates{
-   private int latitude, longitude, elevation;
+    private int latitude, longitude, elevation;
 
     public Coordinates(int latitude, int longitude, int elevation) {
         this.latitude = latitude;
@@ -56,6 +159,19 @@ class Person{
         this.chosenSpots = chosenSpots;
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", profile='" + profile + '\'' +
+                ", post='" + post + '\'' +
+                ", subPost='" + subPost + '\'' +
+                ", chosenSpots=" + chosenSpots +
+                '}';
+    }
+
     public String getUsername() {
         return username;
     }
@@ -95,7 +211,7 @@ class Park extends Spot{
 class Garden extends Park{
     private int area;
 
-    public Garden(Coordinates place, int subs, String type, String subType, int area) {
+    public Garden(Coordinates place, int subs, int area) {
         super(place, subs, "Garden");
         this.area = area;
     }
@@ -136,6 +252,14 @@ class Exposition extends Spot{
     private String art;
     private int cost;
 
+    @Override
+    public String toString() {
+        return "Exposition{" +
+                "art='" + art + '\'' +
+                ", cost=" + cost +
+                '}';
+    }
+
     public Exposition(Coordinates place, int subs, String art, int cost) {
         super(place, subs, "Exposition");
         this.art = art;
@@ -147,8 +271,8 @@ class Bar extends Spot{
     private int capacity, minConsump, percGuest;
     private ArrayList<Person> guest_list;
 
-    public Bar(Coordinates place, int subs, String type, int capacity, int minConsump, int percGuest, ArrayList<Person> guest_list) {
-        super(place, subs, type);
+    public Bar(Coordinates place, int subs, int capacity, int minConsump, int percGuest, ArrayList<Person> guest_list) {
+        super(place, subs, "Bar");
         this.capacity = capacity;
         this.minConsump = minConsump;
         this.percGuest = percGuest;

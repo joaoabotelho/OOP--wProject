@@ -1,0 +1,4 @@
+Garden 10 15 20 50 150
+Sports_Area 50 30 20 100 Football Basketball
+Exposition 10 23 14 60 Classic 150
+Bar 100 23 150 200 250 5 80
