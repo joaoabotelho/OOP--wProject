@@ -1,21 +1,20 @@
 import javax.swing.*;
 import java.awt.*;
 
-class GUI_Management {
-
-    public void addPanel(JPanel panel, Component... comps) {
+class GUI_Management{
+    void addPanel(JPanel panel, Component... comps) {
         for (Component comp : comps) {
             panel.add(comp);
         }
     }
 
-    public void addFrame(JFrame frame, Component... comps) {
+    void addFrame(JFrame frame, Component... comps) {
         for (Component comp : comps) {
             frame.add(comp);
         }
     }
 
-    public void createTitle(String title, JPanel titleP){
+    void createTitle(String title, JPanel titleP){
         JLabel titleL = new JLabel(title);
 
         titleL.setHorizontalAlignment(SwingConstants.CENTER);
@@ -23,7 +22,7 @@ class GUI_Management {
         titleP.add(titleL, BorderLayout.CENTER);
     }
 
-    public JTextField createLabelTextField(JPanel panel, String str){
+    JTextField createLabelTextField(JPanel panel, String str){
         JLabel label = new JLabel(str, SwingConstants.RIGHT);
         JTextField tField= new JTextField();
 
@@ -34,28 +33,10 @@ class GUI_Management {
         return tField;
     }
 
-    public JComboBox createLabelComboBox(JPanel panel, String str, String[] comboStr){
-        JLabel label = new JLabel(str);
-        JComboBox comboBox = new JComboBox(comboStr);
+    JLabel setWarning(JFrame frame, JPanel warningP, String str){
+        JLabel warningL;
 
-        label.setFont(new Font("Arial", Font.PLAIN, 15));
-        addPanel(panel, label, comboBox);
-
-        return comboBox;
-    }
-
-    public JComboBox createLabelComboBox(JPanel panel, JLabel label, String[] comboStr){
-        JComboBox comboBox = new JComboBox(comboStr);
-
-        label.setFont(new Font("Arial", Font.PLAIN, 15));
-        addPanel(panel, label, comboBox);
-
-        return comboBox;
-    }
-
-    public JLabel setWarning(JFrame frame, JLabel warningL, JPanel warningP, String str){
         warningL = new JLabel(str);
-
         warningL.setFont(new Font("Arial", Font.BOLD, 10));
         warningL.setHorizontalAlignment(SwingConstants.CENTER);
         warningP.add(warningL);
@@ -65,13 +46,7 @@ class GUI_Management {
         return warningL;
     }
 
-    public void createFlowLayouts(JPanel... panels){
-        for(JPanel panel : panels){
-            panel =  new JPanel(new FlowLayout());
-        }
-    }
-
-    public JPasswordField createPass(JPanel pass){
+    JPasswordField createPass(JPanel pass){
         JLabel passL = new JLabel("Password:");
         JPasswordField password = new JPasswordField();
 
@@ -83,8 +58,8 @@ class GUI_Management {
         return password;
     }
 
-    public void defaultWindow(JFrame frame, int width, int height){
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    void defaultWindow(JFrame frame, int width, int height){
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setTitle("DEI Event");
         frame.setSize(width,height);
         frame.setVisible(true);

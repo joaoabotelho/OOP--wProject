@@ -27,7 +27,7 @@ public class Main {
         Exposition expo = new Exposition(expoCoor,9, "Painting",2.33);
         Garden gard[] = new Garden[10];
         SportsArea spo = new SportsArea(coord1, 8, sports);
-        Bar b = new Bar (coord1, 8, "Casa dos Pregos", 8, 5, 50, guest);
+        Bar b = new Bar (coord1, 8, "Casa dos Pregos", 8, 5.0, 50, guest);
 
         spots.add(expo);
         spots.add(spo);

@@ -1,30 +1,37 @@
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
 class Event{
-    public static ArrayList<Spot> spots;
-    public static ArrayList<Person> people;
-    public static int min_revenue;
+    ArrayList<Spot> spots;
+    ArrayList<Person> people;
 
-    public Event(ArrayList<Spot> spots, ArrayList<Person> people) {
+    Event(ArrayList<Spot> spots, ArrayList<Person> people) {
         this.spots = spots;
         this.people = people;
+    }
+
+    Double getMinRevenue() {
+        double minRevenue = 0;
+        for(Person p : people){
+            for(Spot s: p.chosenSpots) {
+                minRevenue += s.getCost(p);
+            }
+        }
+        return minRevenue;
     }
 }
 
 class Coordinates{
-   private Double latitude, longitude, elevation;
+   private Double latitude, longitude;
 
-    public Coordinates(Double latitude, Double longitude) {
+    Coordinates(Double latitude, Double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
     }
 
     @Override
@@ -35,63 +42,74 @@ class Coordinates{
 }
 
 class Spot {
-    protected Coordinates place;
-    protected int subs;
-    protected String type;
+    private Coordinates place;
+    private String type;
+    int subs;
 
-    public Spot(Coordinates place, int subs, String type) {
+    Spot(Coordinates place, int subs, String type) {
         this.place = place;
         this.subs = subs;
         this.type = type;
     }
 
-    public Coordinates getPlace() {
+    Coordinates getPlace() {
         return place;
     }
 
-    public int getSubs() {
+    int getSubs() {
         return subs;
-    }
-
-    @Override
-    public String toString() {
-        return "Spot{" +
-                "place=" + place +
-                ", subs=" + subs +
-                ", type='" + type + '\'' +
-                '}';
     }
 
     public String getType() {
         return type;
     }
+
+    public Double getCost(Person user) {
+        return 0.0;
+    }
+
+    public String stringCapacity(){
+        return "";
+    }
+
+    public void InfoUI(JFrame frame, Person user) { }
 }
 
 class Person{
-    protected String username, name, profile, post, subPost;
-    protected char[] password;
-    protected ArrayList<Spot> chosenSpots;
+    private String username;
+    String name, profile;
+    String subPost;
+    private String post;
+    private char[] password;
+    ArrayList<Spot> chosenSpots;
 
-    public Person(String username, char[] password, String name, String profile, String post, String subPost, ArrayList<Spot> chosenSpots) {
+    Person(String username, char[] password, String name, String profile, String post, String subPost, ArrayList<Spot> chosenSpots) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.profile = profile;
-        this.post = post;
         this.subPost = subPost;
         this.chosenSpots = chosenSpots;
     }
 
-    public ArrayList<Spot> getChosenSpots() {
+    ArrayList<Spot> getChosenSpots() {
         return chosenSpots;
     }
 
-    public String getUsername() {
+    String getUsername() {
         return username;
     }
 
-    public char[] getPassword() {
+    char[] getPassword() {
         return password;
+    }
+
+    public String guestPresent(){
+        return name + " and " + profile;
+    }
+
+    public Double expoCost(Double full){
+        return full;
     }
 }
 
@@ -111,12 +129,22 @@ class Student extends Person{
     public Student(String username, char[] password, String name, String profile, String course, ArrayList<Spot> chosenSpots) {
         super(username, password, name, profile, "Student", course, chosenSpots);
     }
+
+    @Override
+    public String guestPresent(){
+        return name + ", " + profile + " and " + subPost;
+    }
+
+    @Override
+    public Double expoCost(Double full){
+        return full * 90 / 100;
+    }
 }
 
 class Park extends Spot{
-    protected String subType;
+    private String subType;
 
-    public Park(Coordinates place, int subs, String subType) {
+    Park(Coordinates place, int subs, String subType) {
         super(place, subs, "Park");
         this.subType = subType;
     }
@@ -130,37 +158,43 @@ class Park extends Spot{
 class Garden extends Park{
     private int area;
 
-    public Garden(Coordinates place, int subs, int area) {
+    Garden(Coordinates place, int subs, int area) {
         super(place, subs, "Garden");
         this.area = area;
     }
 
-    public int getArea() {
-        return area;
+    @Override
+    public void InfoUI(JFrame frame, Person user){
+        JLabel area = new JLabel("Area(m2): " + Integer.toString(this.area));
+        frame.add(area);
     }
 }
 
 class SportsArea extends Park{
     private ArrayList<String> sports;
 
-    public SportsArea(Coordinates place, int subs, ArrayList<String> sports) {
+    SportsArea(Coordinates place, int subs, ArrayList<String> sports) {
         super(place, subs, "Sports Area");
         this.sports = sports;
     }
 
-    public ArrayList<String> getSports() {
-        return sports;
-    }
-
     @Override
-    public String toString() {
-        return "Sports_Area{" +
-                "place=" + place +
-                ", subs=" + subs +
-                ", type='" + type + '\'' +
-                ", sub_type='" + subType + '\'' +
-                ", sports=" + sports +
-                '}';
+    public void InfoUI(JFrame frame, Person user){
+        JPanel f = new JPanel(new GridLayout(2,1));
+        JPanel panel = new JPanel(new GridLayout(0, 1));
+        JScrollPane sports = new JScrollPane(panel);
+        JLabel label = new JLabel("Sports");
+
+        label.setFont(new Font("Arial", Font.BOLD, 15));
+        f.add(label);
+        for (String sport : this.sports){
+            label = new JLabel(sport);
+            label.setFont(new Font("Arial", Font.PLAIN, 15));
+            panel.add(label);
+        }
+
+        f.add(sports);
+        frame.add(f);
     }
 }
 
@@ -168,32 +202,38 @@ class Exposition extends Spot{
     private String art;
     private Double cost;
 
-    public Exposition(Coordinates place, int subs, String art, Double cost) {
+    Exposition(Coordinates place, int subs, String art, Double cost) {
         super(place, subs, "Exposition");
         this.art = art;
         this.cost = cost;
     }
 
-    public Double getCost() {
-        return cost;
-    }
-
-    public String getArt() {
-        return art;
+    @Override
+    public Double getCost(Person user) {
+        return user.expoCost(cost);
     }
 
     @Override
     public String getType() {
         return super.getType() + " - " + art;
     }
+
+    @Override
+    public void InfoUI(JFrame frame, Person user){
+        double cost;
+        cost = user.expoCost(this.cost);
+        JLabel costL = new JLabel("Cost: " + cost + "€");
+        frame.add(costL);
+    }
 }
 
 class Bar extends Spot{
     private String name;
-    private int capacity, minConsump, percGuest;
+    private int capacity, percGuest;
+    private Double minConsump;
     private ArrayList<Person> guestList;
 
-    public Bar(Coordinates place, int subs, String name, int capacity, int minConsump, int percGuest, ArrayList<Person> guestList) {
+    Bar(Coordinates place, int subs, String name, int capacity, Double minConsump, int percGuest, ArrayList<Person> guestList){
         super(place, subs, "Bar");
         this.name = name;
         this.capacity = capacity;
@@ -202,12 +242,13 @@ class Bar extends Spot{
         this.guestList = guestList;
     }
 
-    public int getPercGuest() {
-        return percGuest;
+    int getCapacity() {
+        return capacity;
     }
 
-    public int getCapacity() {
-        return capacity;
+    @Override
+    public String stringCapacity(){
+        return "(Max: " + capacity + ")";
     }
 
     @Override
@@ -215,11 +256,36 @@ class Bar extends Spot{
         return super.getType() + " - " + name;
     }
 
-    public ArrayList<Person> getGuestList() {
+    ArrayList<Person> getGuestList() {
         return guestList;
     }
 
-    public int getMinConsump() {
+    @Override
+    public Double getCost(Person user) {
         return minConsump;
+    }
+
+    @Override
+    public void InfoUI(JFrame frame, Person user){
+        JLabel minConsump = new JLabel("Minimum Consumption: " + this.minConsump + "€");
+        JPanel f = new JPanel(new GridLayout(2,1));
+        JPanel panel = new JPanel(new GridLayout(0, 1));
+        JScrollPane guest = new JScrollPane(panel);
+        JLabel label = new JLabel("Guest List (Max: " + this.percGuest * this.capacity / 100 + ")");
+        String str;
+        ArrayList<Person> guestArray = this.guestList;
+        GUI_Management manage = new GUI_Management();
+
+        label.setFont(new Font("Arial", Font.BOLD, 15));
+        f.add(label);
+        for (Person p: guestArray) {
+            str = p.guestPresent();
+            label = new JLabel(str);
+            label.setFont(new Font("Arial", Font.PLAIN, 15));
+            panel.add(label);
+        }
+
+        f.add(guest);
+        manage.addFrame(frame, minConsump, f);
     }
 }

@@ -77,7 +77,7 @@ class Login extends Main{
 
         } else {
             warningP.remove(warningL);
-            warningL = manage.setWarning(frame, warningL, warningP, "Account not found. Please try again.");
+            warningL = manage.setWarning(frame, warningP, "Account not found. Please try again.");
         }
     }
 
