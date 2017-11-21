@@ -1,20 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 class Register extends Main{
     private JFrame frame;
-    private JPanel titleP, userP, passP, nameP, profileP, postP, subPostP, buttonP, warningP;
-    private JLabel subPostL, warningL;
+    private JPanel titleP, userP, passP, nameP, buttonP, warningP;
+    private JLabel warningL;
     private JTextField username, name;
     private JPasswordField password;
-    private JComboBox profile, post, subPost;
-    private JButton back, finish;
 
     public Register(){
-        String[] profiles = {"------","Bohemian", "Cultural", "Sporty", "Economic"};
-        String[] posts = {"------", "Employee", "Teacher", "Student"};
         createPanels();
 
         // Title Panel
@@ -25,7 +20,7 @@ class Register extends Main{
 
         // Name Panel
         name = manage.createLabelTextField(nameP, "Name:");
-
+/* DONT NEED THIS EVERY INFORMATION IS PROVIDED BY THE DEI FILE
         // Profile Panel
         profile = manage.createLabelComboBox(profileP, "Profile:", profiles);
 
@@ -42,35 +37,28 @@ class Register extends Main{
         // SubPost Panel
         subPostL = new JLabel("------");
         subPost = manage.createLabelComboBox(subPostP, subPostL, new String[]{"------"});
-
+*/
         // Button Panel
-        back = new JButton("Back");
-        finish = new JButton("Finish");
+        JButton back = new JButton("Back");
+        JButton finish = new JButton("Finish");
         manage.addPanel(buttonP, back, finish);
 
-        back.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                new Login();
-            }
+        back.addActionListener(e -> {
+            frame.dispose();
+            new Login();
         });
 
-        finish.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                finishButtonAction();
-            }
-        });
+        finish.addActionListener(e -> finishButtonAction());
 
         // Warning Panel
-        warningL = new JLabel("");
+        warningL = new JLabel("Fill the blank spaces");
         warningP.add(warningL);
 
-        manage.addFrame(frame, titleP, userP, passP, nameP, profileP, postP, subPostP, buttonP, warningP);
-        manage.defaultWindow(frame,400, 450);
+        manage.addFrame(frame, titleP, userP, passP, nameP, buttonP, warningP);
+ //       manage.addFrame(frame, titleP, userP, passP, nameP, profileP, postP, subPostP, buttonP, warningP);
+        manage.defaultWindow(frame,400, 300);
     }
-
+/*
     private void postBoxAction(JComboBox box){
         String selected = (String)box.getSelectedItem();
         String[] subPosts;
@@ -101,23 +89,27 @@ class Register extends Main{
         frame.revalidate();
         frame.repaint();
     }
-
+*/
     private void finishButtonAction(){
         String user = username.getText();
         String pass = String.valueOf(password.getPassword());
         String name = this.name.getText();
+        /*
         String profile = (String)this.profile.getSelectedItem();
         String post = (String)this.post.getSelectedItem();
         String subPost = (String)this.subPost.getSelectedItem();
-
+        */
         // Confirm if every parm is filled in UI
         boolean userBol = user.equals("");
         boolean passBol = pass.equals("");
         boolean nameBol = name.equals("");
+        /*
         boolean profileBol = profile.equals("------");
         boolean postBol = post.equals("------");
         boolean subPostBol = subPost.equals("------") || subPost.equals("----------");
         boolean paramEmpty = userBol || passBol || nameBol || profileBol || postBol || subPostBol;
+        */
+        boolean paramEmpty = userBol || passBol || nameBol;
 
         // Confirm if username doesnt exist
         // Confirm if name is in DEI txt File
@@ -127,23 +119,27 @@ class Register extends Main{
             warningL = manage.setWarning(frame, warningL, warningP, "Some data is empty");
         } else {
             //final: Add to list of People
+            ArrayList<Spot> spots = new ArrayList<Spot>();
+            Employee a = new Employee(name, password.getPassword(), name, "Bohemian", "Part-time", spots);
+            event.people.add(a);
             frame.dispose();
-            new Login();
+            new Menu(a);
         }
     }
 
     private void createPanels(){
         frame = new JFrame();
-        frame.setLayout(new GridLayout(9, 1));
+        frame.setLayout(new GridLayout(6, 1));
         titleP = new JPanel(new BorderLayout());
         userP = new JPanel(new FlowLayout());
         passP = new JPanel(new FlowLayout());
         nameP = new JPanel(new FlowLayout());
+ /*
         profileP = new JPanel(new FlowLayout());
         postP = new JPanel(new FlowLayout());
         subPostP = new JPanel(new FlowLayout());
+ */
         warningP = new JPanel(new FlowLayout());
         buttonP = new JPanel(new FlowLayout());
-        // manage.createFlowLayouts(titleP, userP, passP, nameP, profileP, postP, subPostP, buttonP); DOESNT WORK
     }
 }

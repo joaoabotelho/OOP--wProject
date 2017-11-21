@@ -12,7 +12,6 @@ class Login extends Main{
     private JButton login, register;
 
     public Login(){
-        super();
         createPanels();
 
         // Title Panel
@@ -68,10 +67,11 @@ class Login extends Main{
     }
 
     private void loginButtonAction(){
-        String usr, pass;
+        String usr;
+        char[] pass;
 
         usr = username.getText();
-        pass = String.valueOf(password.getPassword());
+        pass = password.getPassword();
 
         if(searchUser(usr, pass) == true){
 
@@ -81,9 +81,10 @@ class Login extends Main{
         }
     }
 
-    private boolean searchUser(String username, String password){
+    private boolean searchUser(String username, char[] password){
         int arraysize = event.people.size();
-        String temp_username, temp_password;
+        String temp_username;
+        char[] temp_password;
         boolean account_state = false;
 
         // MUST DO Binary Search.
