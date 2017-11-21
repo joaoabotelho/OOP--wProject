@@ -68,10 +68,10 @@ class Login extends Main{
 
     private void loginButtonAction(){
         String usr;
-        char[] pass;
+        String pass;
 
         usr = username.getText();
-        pass = password.getPassword();
+        pass = String.valueOf(password.getPassword());
 
         if(searchUser(usr, pass) == true){
 
@@ -81,10 +81,10 @@ class Login extends Main{
         }
     }
 
-    private boolean searchUser(String username, char[] password){
+    private boolean searchUser(String username, String password){
         int arraysize = event.people.size();
         String temp_username;
-        char[] temp_password;
+        String temp_password;
         boolean account_state = false;
 
         // MUST DO Binary Search.

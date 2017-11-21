@@ -1,0 +1,3 @@
+Employee;tiago martins;Bohemian;Full-Time
+Student;joao botelho;Sporty;LEI
+Teacher;guilherme cruz;Economic;Cat

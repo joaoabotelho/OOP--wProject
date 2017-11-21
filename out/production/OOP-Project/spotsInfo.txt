@@ -1,0 +1,4 @@
+Garden;10;20;50;150
+SportsArea;15;50;50;Football;Basketball
+Exposition;100;30;30;classic;20
+Bar;10;20;100;orquidea;100;5;80

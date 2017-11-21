@@ -11,7 +11,7 @@ public class Data {
 
     public Data() {
         try {
-            this.importUsersData("/Users/tiagomartins/github/OOP-Project/src/usersInfo.txt");
+            this.importUsersData("/Users/tiagomartins/github/OOP-Project/src/peopleInfo.txt");
             this.importDEIUMembers("/Users/tiagomartins/github/OOP-Project/src/DEIMembers.txt");
             System.out.println(users);
             System.out.println(DEIMembers);

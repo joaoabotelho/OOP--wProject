@@ -39,7 +39,7 @@ public class Main {
 
 
         people = new ArrayList<Person>();
-        event = new Event(spots, people);
-        new Login();
+        event = new Event();
+        //new Login();
     }
 }

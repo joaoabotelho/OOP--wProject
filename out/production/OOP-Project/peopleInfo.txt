@@ -1,0 +1,3 @@
+Employee;tmartins1;test123;tiago martins;Bohemian;Full-Time
+Sporty;jbotelho;123test;joao botelho;Student;LEI
+Teacher;gcruz;testint123;guilherme cruz;Economic;Cat

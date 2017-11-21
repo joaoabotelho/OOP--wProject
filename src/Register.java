@@ -120,7 +120,7 @@ class Register extends Main{
         } else {
             //final: Add to list of People
             ArrayList<Spot> spots = new ArrayList<Spot>();
-            Employee a = new Employee(name, password.getPassword(), name, "Bohemian", "Part-time", spots);
+            Employee a = new Employee(name, String.valueOf(password.getPassword()), name, "Bohemian", "Part-time", spots);
             event.people.add(a);
             frame.dispose();
             new Menu(a);
