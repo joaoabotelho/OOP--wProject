@@ -1,14 +1,27 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
-class Event{
-    public static ArrayList<Spot> spots;
-    public static ArrayList<Person> people;
-    public static ArrayList<Person> deiCommunity;
-    public static int min_revenue;
+class Event implements Serializable{
+    public ArrayList<Spot> spots;
+    public ArrayList<Person> people;
+    public ArrayList<Person> deiCommunity;
+    public int min_revenue;
+
+    public ArrayList<Spot> getSpots() {
+        return spots;
+    }
+
+    public ArrayList<Person> getPeople() {
+        return people;
+    }
+
+    public ArrayList<Person> getDeiCommunity() {
+        return deiCommunity;
+    }
+
+    public int getMin_revenue() {
+        return min_revenue;
+    }
 
     public Event() {
         this.spots = importSpots();
@@ -120,8 +133,8 @@ class Event{
             try {
                 while ((line = bufferReader.readLine()) != null) {
                     sLine = line.split(";");
-                    System.out.println(Arrays.toString(sLine));
                     ArrayList<Spot> spots = new ArrayList<>();
+
 
                     switch(sLine[0]){
                         case "Teacher":
@@ -188,7 +201,7 @@ class Event{
     }
 }
 
-class Coordinates{
+class Coordinates implements Serializable{
     private Double latitude, longitude, elevation;
 
     public Coordinates(Double latitude, Double longitude) {
@@ -211,7 +224,7 @@ class Coordinates{
 
 }
 
-class Spot {
+class Spot implements Serializable{
     protected Coordinates place;
     protected int subs;
     protected String type;
@@ -244,7 +257,7 @@ class Spot {
     }
 }
 
-class Person{
+class Person implements Serializable{
     protected String username, name, profile, post, subPost;
     protected String password;
     protected ArrayList<Spot> chosenSpots;
@@ -257,6 +270,19 @@ class Person{
         this.post = post;
         this.subPost = subPost;
         this.chosenSpots = chosenSpots;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", profile='" + profile + '\'' +
+                ", post='" + post + '\'' +
+                ", subPost='" + subPost + '\'' +
+                ", password='" + password + '\'' +
+                ", chosenSpots=" + chosenSpots +
+                '}';
     }
 
     public String getName() {
@@ -276,7 +302,7 @@ class Person{
     }
 }
 
-class Teacher extends Person{
+class Teacher extends Person implements Serializable{
     public Teacher(String username, String password, String name, String profile, String subPost, ArrayList<Spot> chosenSpots) {
         super(username, password, name, profile, "Teacher", subPost, chosenSpots);
     }
@@ -294,7 +320,7 @@ class Student extends Person{
     }
 }
 
-class Park extends Spot{
+class Park extends Spot implements Serializable{
     protected String subType;
 
     public Park(Coordinates place, int subs, String subType) {
@@ -316,12 +342,14 @@ class Garden extends Park{
         this.area = area;
     }
 
+
+
     public int getArea() {
         return area;
     }
 }
 
-class SportsArea extends Park{
+class SportsArea extends Park implements Serializable{
     private ArrayList<String> sports;
 
     public SportsArea(Coordinates place, int subs, ArrayList<String> sports) {
@@ -345,7 +373,7 @@ class SportsArea extends Park{
     }
 }
 
-class Exposition extends Spot{
+class Exposition extends Spot implements Serializable{
     private String art;
     private Double cost;
 
@@ -369,7 +397,7 @@ class Exposition extends Spot{
     }
 }
 
-class Bar extends Spot{
+class Bar extends Spot implements Serializable{
     private String name;
     private int capacity, minConsump, percGuest;
     private ArrayList<Person> guestList;
@@ -402,5 +430,47 @@ class Bar extends Spot{
 
     public int getMinConsump() {
         return minConsump;
+    }
+}
+
+class ObjectFiles{
+    private ObjectInputStream iS;
+    private ObjectOutputStream oS;
+
+    public void writeObject(Object o, String fileName){
+        try {
+            oS = new ObjectOutputStream(new FileOutputStream(fileName));
+            oS.writeObject(o);
+            oS.close();
+        }
+        catch (FileNotFoundException ex){
+            System.out.println("Unable to open " + fileName);
+        }
+        catch (IOException ex){
+            System.out.println("Unable to write to " + fileName);
+        }
+    }
+
+    public Object readObject(String path) {
+        Object data = null;
+        try {
+            iS = new ObjectInputStream(new FileInputStream(path));
+            data = iS.readObject();
+            iS.close();
+            return data;
+        }
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("class not found");
+        }
+        catch(FileNotFoundException ex)
+        {
+            System.out.println("file not found");
+        }
+        catch(IOException ex)
+        {
+            System.out.println("unable to open " + path);
+        }
+        return data;
     }
 }

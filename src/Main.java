@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
     protected static Event event;
@@ -38,8 +39,14 @@ public class Main {
         }
 
 
-        people = new ArrayList<Person>();
-        event = new Event();
+        ObjectFiles fo = new ObjectFiles();
+        //Event e = new Event();
+        Event e = (Event)fo.readObject("./event.ser");
+        ArrayList<Person> p = e.getPeople();
+        //System.out.println(p.get(0));
+        System.out.println(Arrays.toString(e.getSpots().toArray()));
+        System.out.println(Arrays.toString(e.getPeople().toArray()));
+        //fo.writeObject(e, "event.ser");
         //new Login();
     }
 }
