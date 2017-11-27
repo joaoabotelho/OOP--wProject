@@ -2,37 +2,35 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-class Menu extends Main {
+class Menu extends Event {
     private JFrame frame;
     private JScrollPane scroll;
-    private JLabel warningL, revenue;
+    private JLabel warningL, revenueL;
     private JPanel warningP, firstP, titleP , all;
-    private Person user;
+    private int indexUser;
 
-    public Menu(Person user) {
-        Spot pot;
-        int i, subs;
-        this.user = user;
+    Menu(int indexUser) {
+        int subs;
+        this.indexUser = indexUser;
         createPanels();
 
         // Title Panel
-        revenue = new JLabel("Revenue: " + event.getMinRevenue());
+        revenueL = new JLabel("Revenue: " + super.d.revenue);
         manage.createTitle("Locations", titleP);
-        manage.addPanel(firstP, titleP, revenue);
+        manage.addPanel(firstP, titleP, revenueL);
 
         // Locations Panel
-        for (i = 0; i < event.spots.size(); i++) {
-            pot = event.spots.get(i);
-            basicSpotInfo(all, pot);
+        for (Spot s : super.d.spots) {
+            basicSpotInfo(all, s);
         }
 
         // Warning Panel
-        subs = this.user.getChosenSpots().size();
+        subs = super.d.people.get(indexUser).chosenSpots.size();
         warningL = manage.setWarning(frame, warningP, "You have subscribed to " + subs +" locations.");
 
 
         manage.addFrame(frame, firstP, scroll, warningP);
-        manage.defaultWindow(frame, 500,1000);
+        manage.defaultWindow(frame, 500,1000, super.d);
     }
 
     private void createPanels(){
@@ -45,7 +43,19 @@ class Menu extends Main {
         warningP = new JPanel(new FlowLayout());
     }
 
-    private void basicSpotInfo(JPanel panel, Spot a){
+    private void updateScrollPanel(){
+        all.removeAll();
+
+        // Locations Panel
+        for (Spot s : super.d.spots) {
+            basicSpotInfo(all, s);
+        }
+
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    private void basicSpotInfo(JPanel panel, Spot a) {
         JPanel panels = new JPanel(new GridLayout(3, 1));
         JPanel line1 = new JPanel(new FlowLayout());
         JPanel line2 = new JPanel(new FlowLayout());
@@ -61,20 +71,28 @@ class Menu extends Main {
         subL.setText("Num of subscribers" + instBar + ": " + Integer.toString(a.getSubs()));
 
         type.setFont(new Font("Arial", Font.BOLD, 15));
-        ((FlowLayout)line1.getLayout()).setHgap(50);
-        ((FlowLayout)line2.getLayout()).setHgap(50);
+        ((FlowLayout) line1.getLayout()).setHgap(50);
+        ((FlowLayout) line2.getLayout()).setHgap(50);
 
-        if(this.user.getChosenSpots().contains(a)){
+        System.out.println("lalala");
+        for (Person z : super.d.people){
+            System.out.println(z);
+            System.out.println("lalala");
+        }
+        super.d.people.get(indexUser);
+        System.out.println("lalala");
+        if(super.d.people.get(indexUser).chosenSpots.contains(a)){
+            System.out.println("lalala");
             add.setText("Unsubscribed");
         } else {
             add.setText("Subscribe to");
         }
+        System.out.println("lalala");
 
-        info.addActionListener(e -> new MoreInfo(a,user));
+        info.addActionListener(e -> new MoreInfo(a, indexUser));
 
         add.addActionListener(e -> {
-            int subs = this.user.chosenSpots.size();
-            Double valueRev = event.getMinRevenue();
+            int subs = super.d.people.get(indexUser).chosenSpots.size();
             String extraWarning = "";
 
             if(Objects.equals(add.getText(), "Subscribe to")) {
@@ -83,30 +101,33 @@ class Menu extends Main {
                 } else if(a instanceof Bar && ((Bar) a).getCapacity() == a.getSubs()){
                     extraWarning = "This Bar is full! ";
                 } else {
-                    this.user.getChosenSpots().add(a);
+                    super.d.people.get(indexUser).chosenSpots.add(a);
                     a.subs++;
                     add.setText("Unsubscribed");
                     if(a instanceof Bar){
-                        ((Bar) a).getGuestList().add(this.user);
+                        ((Bar) a).getGuestList().add(super.d.people.get(indexUser));
                     }
-                    valueRev += a.getCost(this.user);
+                    super.d.revenue += a.getCost(super.d.people.get(indexUser));
                 }
             } else {
                 add.setText("Subscribe to");
-                this.user.getChosenSpots().remove(a);
+                super.d.people.get(indexUser).chosenSpots.remove(a);
                 a.subs--;
                 if(a instanceof Bar){
-                    ((Bar) a).getGuestList().remove(this.user);
+                    ((Bar) a).getGuestList().remove(indexUser);
                 }
-                valueRev -= a.getCost(this.user);
+                super.d.revenue -= a.getCost(super.d.people.get(indexUser));
             }
 
-            subs = this.user.chosenSpots.size();
+            subs = super.d.people.get(indexUser).chosenSpots.size();
 
             subL.setText("Num of subscribers" + instBar + ": " + Integer.toString(a.getSubs()));
-            revenue.setText("Revenue: " + valueRev);
+            revenueL.setText("Revenue: " + super.d.revenue);
             warningP.remove(warningL);
             warningL = manage.setWarning(frame, warningP, extraWarning + "You have subscribed to " + subs + " locations.");
+            sortSpots();
+            updateScrollPanel();
+            System.out.println(super.d.people.get(indexUser));
         });
 
         manage.addPanel(line1, type, subL);

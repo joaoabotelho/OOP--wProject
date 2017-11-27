@@ -1,0 +1,10 @@
+Employee;Henrique Malo;Cultural;Part-Time
+Employee;Rita Pedrosa;Bohemian;Full-Time
+Employee;Tiago Martins;Bohemian;Full-Time
+Employee;Tiago Simoes;Bohemian;Part-Time
+Student;Gustavo Boleo;Sporty;LDM
+Student;Joao Botelho;Economic;LEI
+Student;Rodrigo Melicias;Sporty;LEE
+Teacher;Guilherme Gruz;Cultural;Adjuvant
+Teacher;Luisa Silva;Economic;Professor
+Teacher;Rodrigo Resendes;Cultural;Associate

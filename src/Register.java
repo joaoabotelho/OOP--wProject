@@ -1,8 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
-class Register extends Main{
+class Register extends Event{
     private JFrame frame;
     private JPanel titleP, userP, passP, nameP, buttonP, warningP;
     private JLabel warningL;
@@ -38,13 +37,12 @@ class Register extends Main{
         warningP.add(warningL);
 
         manage.addFrame(frame, titleP, userP, passP, nameP, buttonP, warningP);
-        manage.defaultWindow(frame,400, 300);
+        manage.defaultWindow(frame,400, 300, super.d);
     }
 
     private void finishButtonAction(){
         String user = username.getText();
         String pass = String.valueOf(password.getPassword());
-        System.out.println(password.getPassword());
         String name = this.name.getText();
         // Confirm if every parm is filled in UI
         boolean userBol = user.equals("");
@@ -52,19 +50,18 @@ class Register extends Main{
         boolean nameBol = name.equals("");
         boolean paramEmpty = userBol || passBol || nameBol;
 
-        // Confirm if username doesnt exist
-        // Confirm if name is in DEI txt File
-
         if(paramEmpty){
             warningP.remove(warningL);
             warningL = manage.setWarning(frame, warningP, "Some data is empty");
         } else {
-            //final: Add to list of People
-            ArrayList<Spot> spots = new ArrayList<>();
-            Employee a = new Employee(name, password.getPassword(), name, "Bohemian", "Part-time", spots);
-            event.people.add(a);
-            frame.dispose();
-            new Menu(a);
+            int indexNewUser = checkUsernameAndName(user, pass, name);
+            if(indexNewUser != -1){
+                frame.dispose();
+                new Menu(indexNewUser);
+            } else {
+                warningP.remove(warningL);
+                warningL = manage.setWarning(frame, warningP, "Member not in DEI community or username already exists");
+            }
         }
     }
 

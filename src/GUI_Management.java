@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-class GUI_Management{
+class GUI_Management {
     void addPanel(JPanel panel, Component... comps) {
         for (Component comp : comps) {
             panel.add(comp);
@@ -14,7 +16,7 @@ class GUI_Management{
         }
     }
 
-    void createTitle(String title, JPanel titleP){
+    void createTitle(String title, JPanel titleP) {
         JLabel titleL = new JLabel(title);
 
         titleL.setHorizontalAlignment(SwingConstants.CENTER);
@@ -22,18 +24,33 @@ class GUI_Management{
         titleP.add(titleL, BorderLayout.CENTER);
     }
 
-    JTextField createLabelTextField(JPanel panel, String str){
+    JTextField createLabelTextField(JPanel panel, String str) {
         JLabel label = new JLabel(str, SwingConstants.RIGHT);
-        JTextField tField= new JTextField();
+        JTextField tField = new JTextField();
 
         label.setFont(new Font("Arial", Font.PLAIN, 15));
-        tField.setPreferredSize(new Dimension(200,24));
+        tField.setPreferredSize(new Dimension(200, 24));
 
         addPanel(panel, label, tField);
         return tField;
     }
 
-    JLabel setWarning(JFrame frame, JPanel warningP, String str){
+    void defaultWindow(JFrame frame, int width, int height, Data data){
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ObjectFiles objFile = new ObjectFiles();
+                objFile.writeObject(data);
+            }
+        });
+        frame.setTitle("DEI Event");
+        frame.setSize(width,height);
+        frame.setVisible(true);
+    }
+
+    JLabel setWarning(JFrame frame, JPanel warningP, String str) {
         JLabel warningL;
 
         warningL = new JLabel(str);
@@ -46,22 +63,15 @@ class GUI_Management{
         return warningL;
     }
 
-    JPasswordField createPass(JPanel pass){
+    JPasswordField createPass(JPanel pass) {
         JLabel passL = new JLabel("Password:");
         JPasswordField password = new JPasswordField();
 
         passL.setFont(new Font("Arial", Font.PLAIN, 15));
-        password.setPreferredSize(new Dimension(200,24));
+        password.setPreferredSize(new Dimension(200, 24));
 
         addPanel(pass, passL, password);
 
         return password;
-    }
-
-    void defaultWindow(JFrame frame, int width, int height){
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setTitle("DEI Event");
-        frame.setSize(width,height);
-        frame.setVisible(true);
     }
 }

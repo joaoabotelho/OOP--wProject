@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-class Login extends Main{
+class Login extends Event{
     private JFrame frame;
     private JLabel warningL;
     private JPanel warningP, titleP, dataP, userP, passP, buttonP;
@@ -12,6 +10,7 @@ class Login extends Main{
     private JButton login, register;
 
     public Login(){
+        super();
         createPanels();
 
         // Title Panel
@@ -32,21 +31,12 @@ class Login extends Main{
         warningL = new JLabel("");
         warningP.add(warningL);
 
-        login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                loginButtonAction();}
-        });
+        login.addActionListener(e -> loginButtonAction());
 
-        register.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                registerButtonAction();
-            }
-        });
+        register.addActionListener(e -> registerButtonAction());
 
         manage.addFrame(frame, titleP, dataP, buttonP, warningP);
-        manage.defaultWindow(frame, 400, 250);
+        manage.defaultWindow(frame, 400, 250, super.d);
     }
 
     private void registerButtonAction() {
@@ -63,40 +53,22 @@ class Login extends Main{
         buttonP = new JPanel(new FlowLayout());
         passP = new JPanel(new FlowLayout());
         warningP = new JPanel(new FlowLayout());
-        //manage.createFlowLayouts(buttonP, passP, userP, warningP); DOESNT WORK
     }
 
     private void loginButtonAction(){
         String usr;
-        char[] pass;
+        String pass;
 
         usr = username.getText();
-        pass = password.getPassword();
+        pass = String.valueOf(password.getPassword());
 
-        if(searchUser(usr, pass) == true){
-
+        int indexPerson = checkLoginInfo(usr, pass);
+        if(indexPerson != -1){
+            frame.dispose();
+            new Menu(indexPerson);
         } else {
             warningP.remove(warningL);
             warningL = manage.setWarning(frame, warningP, "Account not found. Please try again.");
         }
-    }
-
-    private boolean searchUser(String username, char[] password){
-        int arraysize = event.people.size();
-        String temp_username;
-        char[] temp_password;
-        boolean account_state = false;
-
-        // MUST DO Binary Search.
-        for(int i = 0; i < arraysize; i++){
-            temp_username = event.people.get(i).getUsername();
-            temp_password = event.people.get(i).getPassword();
-
-            if(temp_username == username && temp_password == password){
-                account_state = true;
-            }
-        }
-
-        return account_state;
     }
 }

@@ -1,0 +1,10 @@
+Bar;-103.20013;310.1001;0;RS;6;8;80
+Bar;2.1003;31.00123;0;Moelas;7;9;80
+Bar;40.213;101.3;0;Cartola;5;2;80
+Exposition;10.101;-231;0;Paiting;12.5
+Exposition;89.123;-2;0;Sculpture;6.8
+Garden;65.3;452;0;250
+Garden;-634.83;231.031;0;390
+Garden;522.1202;-20.12940;0;500
+SportsArea;-15.0312;82.031;0;Football;Basketball;Volleyball
+SportsArea;165.0013;-3.391;0;Badminton;Basketball;Tennis;Paddle;Gym

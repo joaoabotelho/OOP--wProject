@@ -1,10 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
-class MoreInfo extends Main{
+class MoreInfo extends Event{
     private JFrame frame;
 
-    public MoreInfo(Spot a, Person user){
+    MoreInfo(Spot a, int indexUser){
         createPanels();
         JLabel type = new JLabel(a.getType());
         JLabel coord = new JLabel(a.getPlace().toString());
@@ -20,10 +20,10 @@ class MoreInfo extends Main{
         type.setFont(new Font("Arial", Font.BOLD, 15));
         manage.addFrame(frame, type, subL, coord);
 
-        a.InfoUI(frame, user);
+        a.InfoUI(frame, super.d.people.get(indexUser));
 
         frame.add(exit);
-        manage.defaultWindow(frame, 450,400);
+        manage.defaultWindow(frame, 450,400, super.d);
     }
 
     private void createPanels(){
