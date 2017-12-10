@@ -4,6 +4,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 class GUI_Management {
+    protected JFrame frame;
+    protected JPanel titleP, userP, passP, buttonP, warningP;
+    protected JLabel warningL;
+    protected Event event;
+
     void addPanel(JPanel panel, Component... comps) {
         for (Component comp : comps) {
             panel.add(comp);

@@ -11,7 +11,6 @@ class Data implements Serializable{
     Data() {
         this.spots = importSpots();
         this.people = new ArrayList<>();
-        System.out.println("ACONTECEU");
         this.deiCommunity = importDEICommunity();
         this.revenue = getMinRevenue();
     }
@@ -74,50 +73,6 @@ class Data implements Serializable{
         }
         return spots;
     }
-/*
-    private ArrayList<Person> importPeople(){
-        ArrayList<Person> people = new ArrayList<>();
-        String line;
-        String[] sLine;
-        URL url = getClass().getResource("peopleInfo.txt");
-
-        try {
-            FileReader fileReader = new FileReader(url.getPath());
-            BufferedReader bufferReader = new BufferedReader(fileReader);
-
-            try {
-                while ((line = bufferReader.readLine()) != null) {
-                    sLine = line.split(";");
-                    ArrayList<Spot> spots = new ArrayList<>();
-
-                    switch(sLine[0]){
-                        case "Teacher":
-                            Teacher t = new Teacher(sLine[1], sLine[2], sLine[3], sLine[4], sLine[5], spots);
-                            people.add(t);
-                            break;
-
-                        case "Employee":
-                            Employee e = new Employee(sLine[1], sLine[2], sLine[3], sLine[4], sLine[5], spots);
-                            people.add(e);
-                            break;
-
-                        case "Student":
-                            Student s = new Student(sLine[1], sLine[2], sLine[3], sLine[4], sLine[5], spots);
-                            people.add(s);
-                    }
-                }
-            }
-            catch(IOException ex){
-                System.out.println("Unable to read " + url.getPath());
-            }
-
-        }
-        catch(FileNotFoundException ex){
-            System.out.println("Unable to open " + url.getPath());
-        }
-        return people;
-    }
-    */
 
     private ArrayList<Person> importDEICommunity(){
         ArrayList<Person> deiCommunity = new ArrayList<>();

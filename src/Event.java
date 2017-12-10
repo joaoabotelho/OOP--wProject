@@ -3,7 +3,6 @@ import java.util.Comparator;
 
 class Event{
     Data d;
-    GUI_Management manage;
 
     Event() {
         File f = new File("./eventInfo");
@@ -13,8 +12,6 @@ class Event{
         } else {
             this.d = new Data();
         }
-        System.out.println("ACONTECEU 2");
-        this.manage = new GUI_Management();
     }
 
 

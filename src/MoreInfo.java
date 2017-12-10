@@ -1,16 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
 
-class MoreInfo extends Event{
-    private JFrame frame;
+class MoreInfo extends GUI_Management{
 
-    MoreInfo(Spot a, int indexUser){
+    MoreInfo(Event event, Spot a, int indexUser){
         createPanels();
         JLabel type = new JLabel(a.getType());
         JLabel coord = new JLabel(a.getPlace().toString());
         JLabel subL = new JLabel();
         JButton exit = new JButton("Exit");
         String instBar;
+        super.event = event;
 
         instBar = a.stringCapacity();
         subL.setText("Num of subscribers" + instBar + ": " + Integer.toString(a.getSubs()));
@@ -18,12 +18,12 @@ class MoreInfo extends Event{
         exit.addActionListener(e -> frame.dispose());
 
         type.setFont(new Font("Arial", Font.BOLD, 15));
-        manage.addFrame(frame, type, subL, coord);
+        addFrame(frame, type, subL, coord);
 
-        a.InfoUI(frame, super.d.people.get(indexUser));
+        a.InfoUI(frame, super.event.d.people.get(indexUser));
 
         frame.add(exit);
-        manage.defaultWindow(frame, 450,400, super.d);
+        defaultWindow(frame, 450,400, super.event.d);
     }
 
     private void createPanels(){

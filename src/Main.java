@@ -1,5 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        new Login();
+        Event event = new Event();
+        new Login(event);
     }
 }

@@ -1,31 +1,27 @@
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.*; import java.awt.*;
 
-class Login extends Event{
-    private JFrame frame;
-    private JLabel warningL;
-    private JPanel warningP, titleP, dataP, userP, passP, buttonP;
+class Login extends GUI_Management{
+    private JPanel dataP;
     private JTextField username;
     private JPasswordField password;
-    private JButton login, register;
 
-    public Login(){
-        super();
+    public Login(Event event){
         createPanels();
+        super.event = event;
 
         // Title Panel
-        manage.createTitle("Login", titleP);
+        createTitle("Login", titleP);
 
         //Data Panel
-        username = manage.createLabelTextField(userP, "Username:");
-        password = manage.createPass(passP);
+        username = createLabelTextField(userP, "Username:");
+        password = createPass(passP);
 
-        manage.addPanel(dataP, userP, passP);
+        addPanel(dataP, userP, passP);
 
         // Button Panel
-        login = new JButton("Login");
-        register = new JButton("Register");
-        manage.addPanel(buttonP, login, register);
+        JButton login = new JButton("Login");
+        JButton register = new JButton("Register");
+        addPanel(buttonP, login, register);
 
         // Warning
         warningL = new JLabel("");
@@ -35,13 +31,13 @@ class Login extends Event{
 
         register.addActionListener(e -> registerButtonAction());
 
-        manage.addFrame(frame, titleP, dataP, buttonP, warningP);
-        manage.defaultWindow(frame, 400, 250, super.d);
+        addFrame(frame, titleP, dataP, buttonP, warningP);
+        defaultWindow(frame, 400, 250, super.event.d);
     }
 
     private void registerButtonAction() {
         frame.dispose();
-        new Register();
+        new Register(super.event);
     }
 
     private void createPanels(){
@@ -62,13 +58,13 @@ class Login extends Event{
         usr = username.getText();
         pass = String.valueOf(password.getPassword());
 
-        int indexPerson = checkLoginInfo(usr, pass);
+        int indexPerson = super.event.checkLoginInfo(usr, pass);
         if(indexPerson != -1){
             frame.dispose();
-            new Menu(indexPerson);
+            new Menu(super.event, indexPerson);
         } else {
             warningP.remove(warningL);
-            warningL = manage.setWarning(frame, warningP, "Account not found. Please try again.");
+            warningL = setWarning(frame, warningP, "Account not found. Please try again.");
         }
     }
 }

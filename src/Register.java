@@ -1,33 +1,32 @@
 import javax.swing.*;
 import java.awt.*;
 
-class Register extends Event{
-    private JFrame frame;
-    private JPanel titleP, userP, passP, nameP, buttonP, warningP;
-    private JLabel warningL;
+class Register extends GUI_Management{
+    private JPanel nameP;
     private JTextField username, name;
     private JPasswordField password;
 
-    public Register(){
+    public Register(Event event){
         createPanels();
+        super.event = event;
 
         // Title Panel
-        manage.createTitle("Create account", titleP);
+        createTitle("Create account", titleP);
 
-        username = manage.createLabelTextField(userP, "Username:");
-        password = manage.createPass(passP);
+        username = createLabelTextField(userP, "Username:");
+        password = createPass(passP);
 
         // Name Panel
-        name = manage.createLabelTextField(nameP, "Name:");
+        name = createLabelTextField(nameP, "Name:");
 
         // Button Panel
         JButton back = new JButton("Back");
         JButton finish = new JButton("Finish");
-        manage.addPanel(buttonP, back, finish);
+        addPanel(buttonP, back, finish);
 
         back.addActionListener(e -> {
             frame.dispose();
-            new Login();
+            new Login(super.event);
         });
 
         finish.addActionListener(e -> finishButtonAction());
@@ -36,8 +35,8 @@ class Register extends Event{
         warningL = new JLabel("Fill the blank spaces");
         warningP.add(warningL);
 
-        manage.addFrame(frame, titleP, userP, passP, nameP, buttonP, warningP);
-        manage.defaultWindow(frame,400, 300, super.d);
+        addFrame(frame, titleP, userP, passP, nameP, buttonP, warningP);
+        defaultWindow(frame,400, 300, super.event.d);
     }
 
     private void finishButtonAction(){
@@ -52,15 +51,15 @@ class Register extends Event{
 
         if(paramEmpty){
             warningP.remove(warningL);
-            warningL = manage.setWarning(frame, warningP, "Some data is empty");
+            warningL = setWarning(frame, warningP, "Some data is empty");
         } else {
-            int indexNewUser = checkUsernameAndName(user, pass, name);
+            int indexNewUser = super.event.checkUsernameAndName(user, pass, name);
             if(indexNewUser != -1){
                 frame.dispose();
-                new Menu(indexNewUser);
+                new Menu(super.event, indexNewUser);
             } else {
                 warningP.remove(warningL);
-                warningL = manage.setWarning(frame, warningP, "Member not in DEI community or username already exists");
+                warningL = setWarning(frame, warningP, "Member not in DEI community or username already exists");
             }
         }
     }
