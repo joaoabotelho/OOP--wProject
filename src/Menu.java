@@ -5,11 +5,12 @@ import java.util.Objects;
 class Menu extends GUI_Management{
     private JScrollPane scroll;
     private JLabel revenueL;
-    private JPanel firstP, titleP , all;
+    private JPanel firstP, titleP , lastP, all;
     private int indexUser;
 
     Menu(Event event, int indexUser) {
         int subs;
+        JButton logout = new JButton("Logout");
         this.indexUser = indexUser;
         super.event = event;
         createPanels();
@@ -28,8 +29,13 @@ class Menu extends GUI_Management{
         subs = super.event.d.people.get(indexUser).chosenSpots.size();
         warningL = setWarning(frame, warningP, "You have subscribed to " + subs +" locations.");
 
+        logout.addActionListener(e -> {
+            frame.dispose();
+            new Login(event);
+        });
 
-        addFrame(frame, firstP, scroll, warningP);
+        lastP.add(logout, BorderLayout.CENTER);
+        addFrame(frame, firstP, scroll, warningP, lastP);
         defaultWindow(frame, 500,1000, super.event.d);
     }
 
@@ -38,9 +44,10 @@ class Menu extends GUI_Management{
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         titleP = new JPanel(new BorderLayout());
         firstP = new JPanel(new GridLayout(1,2));
+        warningP = new JPanel(new FlowLayout());
+        lastP = new JPanel(new BorderLayout());
         all = new JPanel(new GridLayout(0,1));
         scroll = new JScrollPane(all);
-        warningP = new JPanel(new FlowLayout());
     }
 
     private void updateScrollPanel(){

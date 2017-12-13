@@ -5,7 +5,7 @@ class Login extends GUI_Management{
     private JTextField username;
     private JPasswordField password;
 
-    public Login(Event event){
+    Login(Event event){
         createPanels();
         super.event = event;
 
@@ -40,7 +40,7 @@ class Login extends GUI_Management{
         new Register(super.event);
     }
 
-    private void createPanels(){
+    private void createPanels() {
         frame = new JFrame();
         frame.setLayout(new GridLayout(4,1));
         titleP = new JPanel(new BorderLayout());
