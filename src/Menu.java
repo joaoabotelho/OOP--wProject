@@ -90,8 +90,19 @@ class Menu extends GUI_Management{
 
         info.addActionListener(e -> new MoreInfo(super.event, a, indexUser));
 
-        add.addActionListener(e -> {
-            int subs = super.event.d.people.get(indexUser).chosenSpots.size();
+        add.addActionListener(e -> addActionButton(add, a, subL, instBar));
+
+    addPanel(line1, type, subL);
+    addPanel(line2, new JLabel(coord), info);
+        line3.add(add, BorderLayout.CENTER);
+
+    addPanel(panels, line1, line2, line3);
+        panels.setBorder(BorderFactory.createRaisedBevelBorder());
+        panel.add(panels);
+    }
+
+    private void addActionButton(JButton add, Spot a, JLabel subL, String instBar){
+        int subs = super.event.d.people.get(indexUser).chosenSpots.size();
             String extraWarning = "";
 
             if (Objects.equals(add.getText(), "Subscribe to")) {
@@ -108,27 +119,26 @@ class Menu extends GUI_Management{
                         int max_guest = ((Bar) a).getPercGuest() * ((Bar) a).getCapacity() / 100;
                         int size_guest = ((Bar) a).getGuestList().size();
                          if (max_guest > size_guest){
-                            System.out.println("22222lalalallalal");
                             ((Bar) a).getGuestList().add(super.event.d.people.get(indexUser));
                         } else if (super.event.d.people.get(indexUser).profile.equals("Bohemian")) {
                             int i;
                             int svd = -1;
-                             System.out.println("lalalallalal");
                             for (i = size_guest - 1; i >= 0 ; i--){
                                 if((svd == -1) && !((Bar)a).getGuestList().get(i).profile.equals("Bohemian")){
                                     svd = i;
                                 }
                             }
-                            System.out.println("lalalallalal");
                             if (svd == -1) {
                                 //all bohemian
-                                ((Bar) a).getBohemianWaiting().add(super.event.d.people.get(indexUser));
+                                ((Bar) a).getWaiting().add(super.event.d.people.get(indexUser));
                             } else {
-                                System.out.println("lalalallalal");
+                                ((Bar) a).getWaiting().add(((Bar) a).getGuestList().get(svd));
                                 ((Bar) a).getGuestList().remove(svd);
                                 ((Bar) a).getGuestList().add(super.event.d.people.get(indexUser));
                             }
-                        }
+                        } else {
+                             ((Bar) a).getWaiting().add(super.event.d.people.get(indexUser));
+                         }
                     }
                 }
                 super.event.d.revenue += a.getCost(super.event.d.people.get(indexUser));
@@ -136,9 +146,19 @@ class Menu extends GUI_Management{
             add.setText("Subscribe to");
             super.event.d.people.get(indexUser).chosenSpots.remove(a);
             a.subs--;
-            if(a instanceof Bar){
-                ((Bar) a).getGuestList().remove(indexUser);
-            }
+                if(a instanceof Bar){
+                    if(((Bar) a).getGuestList().contains(super.event.d.people.get((indexUser)))){
+                        int nextGuest;
+                        ((Bar) a).getGuestList().remove(super.event.d.people.get(indexUser));
+                        if(!((Bar) a).getWaiting().isEmpty()) {
+                            nextGuest = ((Bar) a).getIndexWaiting();
+                            ((Bar) a).getGuestList().add(((Bar) a).getWaiting().get(nextGuest));
+                            ((Bar) a).getWaiting().remove(nextGuest);
+                        }
+                    } else {
+                        ((Bar) a).getWaiting().remove(super.event.d.people.get(indexUser));
+                    }
+                }
             super.event.d.revenue -= a.getCost(super.event.d.people.get(indexUser));
         }
 
@@ -150,16 +170,7 @@ class Menu extends GUI_Management{
         warningL = setWarning(frame, warningP, extraWarning + "You have subscribed to " + subs + " locations.");
         super.event.sortSpots();
         updateScrollPanel();
-        System.out.println(super.event.d.people.get(indexUser));
-    });
-
-    addPanel(line1, type, subL);
-    addPanel(line2, new JLabel(coord), info);
-        line3.add(add, BorderLayout.CENTER);
-
-    addPanel(panels, line1, line2, line3);
-        panels.setBorder(BorderFactory.createRaisedBevelBorder());
-        panel.add(panels);
     }
+
 }
 

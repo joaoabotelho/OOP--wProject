@@ -60,8 +60,8 @@ class Data implements Serializable{
 
                         case "Bar":
                             ArrayList<Person> guestList = new ArrayList<>();
-                            ArrayList<Person> bohemianWaiting = new ArrayList<>();
-                            Bar b = new Bar(c, Integer.parseInt(sLine[3]), sLine[4], Integer.parseInt(sLine[5]), Double.parseDouble(sLine[6]), Integer.parseInt(sLine[7]), guestList, bohemianWaiting);
+                            ArrayList<Person> waiting = new ArrayList<>();
+                            Bar b = new Bar(c, Integer.parseInt(sLine[3]), sLine[4], Integer.parseInt(sLine[5]), Double.parseDouble(sLine[6]), Integer.parseInt(sLine[7]), guestList, waiting);
                             spots.add(b);
                     }
                 }
