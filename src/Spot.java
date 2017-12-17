@@ -154,13 +154,19 @@ class Bar extends Spot{
     private ArrayList<Person> guestList;
     private ArrayList<Person> bohemianWaiting;
 
-    Bar(Coordinates place, int subs, String name, int capacity, Double minConsump, int percGuest, ArrayList<Person> guestList){
+    Bar(Coordinates place, int subs, String name, int capacity, Double minConsump, int percGuest, ArrayList<Person> guestList, ArrayList<Person> bohemianWaiting){
         super(place, subs, "Bar");
         this.name = name;
         this.capacity = capacity;
         this.minConsump = minConsump;
         this.percGuest = percGuest;
         this.guestList = guestList;
+        this.bohemianWaiting = bohemianWaiting;
+    }
+
+
+    public ArrayList<Person> getBohemianWaiting() {
+        return bohemianWaiting;
     }
 
     int getCapacity() {

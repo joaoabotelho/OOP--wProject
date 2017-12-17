@@ -107,16 +107,25 @@ class Menu extends GUI_Management{
                         //adds to guest list
                         int max_guest = ((Bar) a).getPercGuest() * ((Bar) a).getCapacity() / 100;
                         int size_guest = ((Bar) a).getGuestList().size();
-                        if (max_guest > size_guest) {
+                         if (max_guest > size_guest){
+                            System.out.println("22222lalalallalal");
                             ((Bar) a).getGuestList().add(super.event.d.people.get(indexUser));
-                        } else if (super.event.d.people.get(indexUser).profile == "Bohemian") {
+                        } else if (super.event.d.people.get(indexUser).profile.equals("Bohemian")) {
                             int i;
-                            for (i = 1; i < size_guest + 1 || (((Bar) a).getGuestList().get(size_guest - i).profile != "Bohemian"); i++);
-                            if (size_guest + 1 == i) {
+                            int svd = -1;
+                             System.out.println("lalalallalal");
+                            for (i = size_guest - 1; i >= 0 ; i--){
+                                if((svd == -1) && !((Bar)a).getGuestList().get(i).profile.equals("Bohemian")){
+                                    svd = i;
+                                }
+                            }
+                            System.out.println("lalalallalal");
+                            if (svd == -1) {
                                 //all bohemian
-
+                                ((Bar) a).getBohemianWaiting().add(super.event.d.people.get(indexUser));
                             } else {
-                                ((Bar) a).getGuestList().remove(size_guest - i);
+                                System.out.println("lalalallalal");
+                                ((Bar) a).getGuestList().remove(svd);
                                 ((Bar) a).getGuestList().add(super.event.d.people.get(indexUser));
                             }
                         }
