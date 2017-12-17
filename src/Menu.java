@@ -94,46 +94,61 @@ class Menu extends GUI_Management{
             int subs = super.event.d.people.get(indexUser).chosenSpots.size();
             String extraWarning = "";
 
-            if(Objects.equals(add.getText(), "Subscribe to")) {
-                if(subs >= 5){
+            if (Objects.equals(add.getText(), "Subscribe to")) {
+                if (subs >= 5) {
                     extraWarning = "You can only subscribe to 5 locations! ";
-                } else if(a instanceof Bar && ((Bar) a).getCapacity() == a.getSubs()){
+                } else if (a instanceof Bar && ((Bar) a).getCapacity() == a.getSubs()) {
                     extraWarning = "This Bar is full! ";
                 } else {
                     super.event.d.people.get(indexUser).chosenSpots.add(a);
                     a.subs++;
                     add.setText("Unsubscribed");
-                    if(a instanceof Bar){
-                        ((Bar) a).getGuestList().add(super.event.d.people.get(indexUser));
+                    if (a instanceof Bar) {
+                        //adds to guest list
+                        int max_guest = ((Bar) a).getPercGuest() * ((Bar) a).getCapacity() / 100;
+                        int size_guest = ((Bar) a).getGuestList().size();
+                        if (max_guest > size_guest) {
+                            ((Bar) a).getGuestList().add(super.event.d.people.get(indexUser));
+                        } else if (super.event.d.people.get(indexUser).profile == "Bohemian") {
+                            int i;
+                            for (i = 1; i < size_guest + 1 || (((Bar) a).getGuestList().get(size_guest - i).profile != "Bohemian"); i++);
+                            if (size_guest + 1 == i) {
+                                //all bohemian
+
+                            } else {
+                                ((Bar) a).getGuestList().remove(size_guest - i);
+                                ((Bar) a).getGuestList().add(super.event.d.people.get(indexUser));
+                            }
+                        }
                     }
-                    super.event.d.revenue += a.getCost(super.event.d.people.get(indexUser));
                 }
-            } else {
-                add.setText("Subscribe to");
-                super.event.d.people.get(indexUser).chosenSpots.remove(a);
-                a.subs--;
-                if(a instanceof Bar){
-                    ((Bar) a).getGuestList().remove(indexUser);
-                }
-                super.event.d.revenue -= a.getCost(super.event.d.people.get(indexUser));
+                super.event.d.revenue += a.getCost(super.event.d.people.get(indexUser));
+        } else {
+            add.setText("Subscribe to");
+            super.event.d.people.get(indexUser).chosenSpots.remove(a);
+            a.subs--;
+            if(a instanceof Bar){
+                ((Bar) a).getGuestList().remove(indexUser);
             }
+            super.event.d.revenue -= a.getCost(super.event.d.people.get(indexUser));
+        }
 
-            subs = super.event.d.people.get(indexUser).chosenSpots.size();
+        subs = super.event.d.people.get(indexUser).chosenSpots.size();
 
-            subL.setText("Num of subscribers" + instBar + ": " + Integer.toString(a.getSubs()));
-            revenueL.setText("Revenue: " + super.event.d.revenue);
-            warningP.remove(warningL);
-            warningL = setWarning(frame, warningP, extraWarning + "You have subscribed to " + subs + " locations.");
-            super.event.sortSpots();
-            updateScrollPanel();
-            System.out.println(super.event.d.people.get(indexUser));
-        });
+        subL.setText("Num of subscribers" + instBar + ": " + Integer.toString(a.getSubs()));
+        revenueL.setText("Revenue: " + super.event.d.revenue);
+        warningP.remove(warningL);
+        warningL = setWarning(frame, warningP, extraWarning + "You have subscribed to " + subs + " locations.");
+        super.event.sortSpots();
+        updateScrollPanel();
+        System.out.println(super.event.d.people.get(indexUser));
+    });
 
-        addPanel(line1, type, subL);
-        addPanel(line2, new JLabel(coord), info);
+    addPanel(line1, type, subL);
+    addPanel(line2, new JLabel(coord), info);
         line3.add(add, BorderLayout.CENTER);
 
-        addPanel(panels, line1, line2, line3);
+    addPanel(panels, line1, line2, line3);
         panels.setBorder(BorderFactory.createRaisedBevelBorder());
         panel.add(panels);
     }

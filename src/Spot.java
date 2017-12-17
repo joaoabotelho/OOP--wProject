@@ -152,6 +152,7 @@ class Bar extends Spot{
     private int capacity, percGuest;
     private Double minConsump;
     private ArrayList<Person> guestList;
+    private ArrayList<Person> bohemianWaiting;
 
     Bar(Coordinates place, int subs, String name, int capacity, Double minConsump, int percGuest, ArrayList<Person> guestList){
         super(place, subs, "Bar");
@@ -183,6 +184,10 @@ class Bar extends Spot{
     @Override
     public Double getCost(Person user) {
         return minConsump;
+    }
+
+    public int getPercGuest() {
+        return percGuest;
     }
 
     @Override
