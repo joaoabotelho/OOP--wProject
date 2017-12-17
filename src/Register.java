@@ -39,6 +39,9 @@ class Register extends GUI_Management{
         defaultWindow(frame,400, 300, super.event.d);
     }
 
+    /**
+     * Action when finish button is pressed
+     */
     private void finishButtonAction(){
         String user = username.getText();
         String pass = String.valueOf(password.getPassword());
@@ -64,6 +67,9 @@ class Register extends GUI_Management{
         }
     }
 
+    /**
+     * Creates all panels to display components
+     */
     private void createPanels(){
         frame = new JFrame();
         frame.setLayout(new GridLayout(6, 1));

@@ -15,6 +15,13 @@ class Event{
     }
 
 
+    /**
+     * Registers a new user by verifing that user's name belongs to dei community
+     * @param username register username
+     * @param password reister password
+     * @param name     person name
+     * @return -1 if user doesn't belongs to dei or people object if the account was creatd successefully
+     */
     int checkUsernameAndName(String username, String password, String name){
         for(Person p : d.people) {
             if (username.equals(p.getUsername())){
@@ -33,6 +40,12 @@ class Event{
         return -1;
     }
 
+    /**
+     * Verifing is username and password match
+     * @param username login username
+     * @param password login password
+     * @return
+     */
     int checkLoginInfo(String username, String password) {
         int i = 0;
         for(Person p : d.people) {

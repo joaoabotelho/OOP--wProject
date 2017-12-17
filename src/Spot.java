@@ -58,6 +58,11 @@ class Spot implements Serializable {
         return "";
     }
 
+    /**
+     * display information in more info about each spot
+     * @param frame frame to render info
+     * @param user user to apply discount
+     */
     public void InfoUI(JFrame frame, Person user) { }
 }
 

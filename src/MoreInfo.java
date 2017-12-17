@@ -26,6 +26,9 @@ class MoreInfo extends GUI_Management{
         defaultWindow(frame, 450,400, super.event.d);
     }
 
+    /**
+     * Creates panel to display "more info"
+     */
     private void createPanels(){
         frame = new JFrame();
         frame.setLayout(new GridLayout(0,2));

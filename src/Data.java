@@ -15,6 +15,10 @@ class Data implements Serializable{
         this.revenue = getMinRevenue();
     }
 
+    /**
+     * Iterates over all people and computes revenue
+     * @return the minimum revenue
+     */
     private Double getMinRevenue() {
         double minRevenue = 0;
         for(Person p : people){
@@ -25,6 +29,10 @@ class Data implements Serializable{
         return minRevenue;
     }
 
+    /**
+     * Imports spots from spotsInfo.txt
+     * @return Array list of all spots
+     */
     private ArrayList<Spot> importSpots() {
         URL url = getClass().getResource("spotsInfo.txt");
         String line;
@@ -75,6 +83,10 @@ class Data implements Serializable{
         return spots;
     }
 
+    /**
+     * Import all people that belongs to dei community from deicommunity.txt
+     * @return Array list of all people in dei community
+     */
     private ArrayList<Person> importDEICommunity(){
         ArrayList<Person> deiCommunity = new ArrayList<>();
         String line;
@@ -120,6 +132,10 @@ class Data implements Serializable{
 
 class ObjectFiles{
 
+    /**
+     * saves and object inside an object file
+     * @param o obejct to be saved
+     */
     void writeObject(Object o){
         try {
             ObjectOutputStream oS = new ObjectOutputStream(new FileOutputStream("eventInfo"));
@@ -134,6 +150,10 @@ class ObjectFiles{
         }
     }
 
+    /**
+     * Imports object from eventInfo
+     * @return Object that was read in file
+     */
     Object readObject() {
         Object data = null;
         try {

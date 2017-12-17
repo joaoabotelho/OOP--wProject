@@ -34,12 +34,17 @@ class Login extends GUI_Management{
         addFrame(frame, titleP, dataP, buttonP, warningP);
         defaultWindow(frame, 400, 250, super.event.d);
     }
-
+/**
+     * Action when register button is pressed
+     */
     private void registerButtonAction() {
         frame.dispose();
         new Register(super.event);
     }
 
+    /**
+     * Create frame with all login components
+     */
     private void createPanels() {
         frame = new JFrame();
         frame.setLayout(new GridLayout(4,1));
@@ -51,6 +56,9 @@ class Login extends GUI_Management{
         warningP = new JPanel(new FlowLayout());
     }
 
+    /**
+     * Action when login button is pressed
+     */
     private void loginButtonAction(){
         String usr;
         String pass;

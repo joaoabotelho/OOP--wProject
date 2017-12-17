@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 class Menu extends GUI_Management{
@@ -39,6 +41,9 @@ class Menu extends GUI_Management{
         defaultWindow(frame, 500,1000, super.event.d);
     }
 
+    /**
+     * Creates all panels to display menu components
+     */
     private void createPanels(){
         frame = new JFrame();
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
@@ -50,6 +55,9 @@ class Menu extends GUI_Management{
         scroll = new JScrollPane(all);
     }
 
+    /**
+     * updates panell with new information
+     */
     private void updateScrollPanel(){
         all.removeAll();
 
@@ -62,6 +70,11 @@ class Menu extends GUI_Management{
         frame.repaint();
     }
 
+    /**
+     * Display information a spot
+     * @param panel panel to dispplay components
+     * @param a spot to be displayed
+     */
     private void basicSpotInfo(JPanel panel, Spot a) {
         JPanel panels = new JPanel(new GridLayout(3, 1));
         JPanel line1 = new JPanel(new FlowLayout());

@@ -9,18 +9,33 @@ class GUI_Management {
     protected JLabel warningL;
     protected Event event;
 
+    /**
+     * Renders Panel with several components
+     * @param panel Panel to be rendered
+     * @param comps components to be displayed inside panel
+     */
     void addPanel(JPanel panel, Component... comps) {
         for (Component comp : comps) {
             panel.add(comp);
         }
     }
 
+    /**
+     * Renders frame with several components
+     * @param frame frame to be rendered
+     * @param comps components to be displayed inside frame
+     */
     void addFrame(JFrame frame, Component... comps) {
         for (Component comp : comps) {
             frame.add(comp);
         }
     }
 
+    /**
+     * Renders title
+     * @param title title to be rendered
+     * @param titleP panel to put title
+     */
     void createTitle(String title, JPanel titleP) {
         JLabel titleL = new JLabel(title);
 
@@ -29,6 +44,12 @@ class GUI_Management {
         titleP.add(titleL, BorderLayout.CENTER);
     }
 
+    /**
+     * Create label with text field
+     * @param panel panel to put label and text field
+     * @param str string to be displayed inside label
+     * @return text field
+     */
     JTextField createLabelTextField(JPanel panel, String str) {
         JLabel label = new JLabel(str, SwingConstants.RIGHT);
         JTextField tField = new JTextField();
@@ -40,6 +61,13 @@ class GUI_Management {
         return tField;
     }
 
+    /**
+     * Creates a window that saves to obeject files when closed
+     * @param frame frame used to display components
+     * @param width width of frame
+     * @param height height of frame
+     * @param data data to be saved in case of closing window
+     */
     void defaultWindow(JFrame frame, int width, int height, Data data){
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.addWindowListener(new WindowAdapter() {
@@ -55,6 +83,13 @@ class GUI_Management {
         frame.setVisible(true);
     }
 
+    /**
+     * Creates a warming in a given frame
+     * @param frame frame to put warning
+     * @param warningP waning to be displayed
+     * @param str message
+     * @return label with warning
+     */
     JLabel setWarning(JFrame frame, JPanel warningP, String str) {
         JLabel warningL;
 
@@ -68,6 +103,11 @@ class GUI_Management {
         return warningL;
     }
 
+    /**
+     * Creates a textfield and hides text
+     * @param pass panel to put password
+     * @return JPasswordField
+     */
     JPasswordField createPass(JPanel pass) {
         JLabel passL = new JLabel("Password:");
         JPasswordField password = new JPasswordField();
