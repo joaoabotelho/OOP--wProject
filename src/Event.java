@@ -44,7 +44,7 @@ class Event{
      * Verifing is username and password match
      * @param username login username
      * @param password login password
-     * @return
+     * @return -1 if information is wrong or user index in people ArrayList
      */
     int checkLoginInfo(String username, String password) {
         int i = 0;

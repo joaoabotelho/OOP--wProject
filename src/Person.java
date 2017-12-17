@@ -19,11 +19,11 @@ class Person implements Serializable {
         this.chosenSpots = chosenSpots;
     }
 
-    public void setUsername(String username) {
+    void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPassword(String password) {
+    void setPassword(String password) {
         this.password = password;
     }
 

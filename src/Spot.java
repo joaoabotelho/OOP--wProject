@@ -169,11 +169,11 @@ class Bar extends Spot{
         this.waiting = waiting;
     }
 
-    public ArrayList<Person> getWaiting() {
+    ArrayList<Person> getWaiting() {
         return waiting;
     }
 
-    public int getIndexWaiting(){
+    int getIndexWaiting(){
         int index = -1;
         int i;
         for(i = 0; i < waiting.size(); i++){
@@ -211,7 +211,7 @@ class Bar extends Spot{
         return minConsump;
     }
 
-    public int getPercGuest() {
+    int getPercGuest() {
         return percGuest;
     }
 

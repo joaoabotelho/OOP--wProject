@@ -6,7 +6,7 @@ class Register extends GUI_Management{
     private JTextField username, name;
     private JPasswordField password;
 
-    public Register(Event event){
+    Register(Event event){
         createPanels();
         super.event = event;
 

@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 class Data implements Serializable{
     ArrayList<Spot> spots;
@@ -54,9 +55,7 @@ class Data implements Serializable{
 
                         case "SportsArea":
                             ArrayList<String> sports = new ArrayList<>();
-                            for(int j = 4; j < sLine.length; j++) {
-                                sports.add(sLine[j]);
-                            }
+                            sports.addAll(Arrays.asList(sLine).subList(4, sLine.length));
                             SportsArea sa = new SportsArea(c, Integer.parseInt(sLine[3]), sports);
                             spots.add(sa);
                             break;
